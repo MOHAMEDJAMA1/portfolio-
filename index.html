@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Mohamed Abshir Jama | Fullstack Developer Portfolio</title>
+  
+  <!-- Tailwind CSS CDN with Plugins -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  
+  <!-- Fonts: Google Geist, JetBrains Mono, Material Symbols -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;family=Geist:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+  
+  <!-- Tailwind Theme Customization (Mockup Match Color Tokens) -->
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-tint": "var(--color-primary)",
+            "primary-container": "var(--color-primary-container)",
+            "surface-bright": "var(--color-surface)",
+            "on-surface": "var(--color-on-surface)",
+            "surface-container-high": "var(--color-surface-container)",
+            "on-tertiary-fixed-variant": "var(--color-on-surface-variant)",
+            "surface-container": "var(--color-surface-container)",
+            "on-error": "#690005",
+            "error-container": "#93000a",
+            "on-tertiary": "var(--color-on-surface)",
+            "primary-fixed": "var(--color-primary-container)",
+            "tertiary-fixed-dim": "var(--color-outline)",
+            "tertiary-fixed": "var(--color-on-surface)",
+            "surface-dim": "var(--color-background)",
+            "on-primary": "var(--color-on-primary)",
+            "on-primary-fixed-variant": "var(--color-primary)",
+            "on-secondary-container": "var(--color-on-secondary-container)",
+            "surface-container-lowest": "var(--color-surface-container-lowest)",
+            "tertiary-container": "var(--color-outline-variant)",
+            "outline": "var(--color-outline)",
+            "on-secondary-fixed": "var(--color-on-secondary)",
+            "on-primary-container": "var(--color-on-primary-container)",
+            "secondary": "var(--color-secondary)",
+            "surface-variant": "var(--color-surface-variant)",
+            "surface-container-low": "var(--color-surface-container-low)",
+            "on-tertiary-container": "var(--color-on-surface-variant)",
+            "on-error-container": "#ffdad6",
+            "on-primary-fixed": "var(--color-on-primary)",
+            "inverse-primary": "var(--color-primary)",
+            "secondary-fixed-dim": "var(--color-secondary)",
+            "on-tertiary-fixed": "var(--color-on-surface)",
+            "on-surface-variant": "var(--color-on-surface-variant)",
+            "tertiary": "var(--color-outline)",
+            "on-background": "var(--color-on-background)",
+            "surface": "var(--color-surface)",
+            "secondary-container": "var(--color-secondary-container)",
+            "outline-variant": "var(--color-outline-variant)",
+            "on-secondary-fixed-variant": "var(--color-on-secondary)",
+            "secondary-fixed": "var(--color-secondary)",
+            "inverse-on-surface": "var(--color-background)",
+            "primary-fixed-dim": "var(--color-primary)",
+            "on-secondary": "var(--color-on-secondary)",
+            "primary": "var(--color-primary)",
+            "surface-container-highest": "var(--color-surface-variant)",
+            "error": "#ffb4ab",
+            "inverse-surface": "var(--color-on-background)",
+            "background": "var(--color-background)"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "container-max": "1180px",
+            "stack-md": "14px",
+            "margin-x": "28px",
+            "gutter": "20px",
+            "stack-sm": "6px",
+            "stack-lg": "36px",
+            "section-gap": "96px"
+          },
+          "fontFamily": {
+            "headline-md": ["Geist"],
+            "display-lg-mobile": ["Geist"],
+            "body-lg": ["Geist"],
+            "code-label": ["JetBrains Mono"],
+            "body-sm": ["Geist"],
+            "display-lg": ["Geist"]
+          },
+          "fontSize": {
+            "headline-md": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+            "display-lg-mobile": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "400"}],
+            "code-label": ["12px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "500"}],
+            "body-sm": ["14px", {"lineHeight": "1.5", "letterSpacing": "0.01em", "fontWeight": "400"}],
+            "display-lg": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700"}]
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    :root {
+      --color-background: #fbfbfb;
+      --color-on-background: #1b1b1c;
+      --color-surface: #f3f3f4;
+      --color-on-surface: #1b1b1c;
+      --color-surface-variant: #e2e2e6;
+      --color-on-surface-variant: #434651;
+      --color-primary: #0056bd;
+      --color-on-primary: #ffffff;
+      --color-primary-container: #4c8eff;
+      --color-on-primary-container: #00285d;
+      --color-secondary: #571bc1;
+      --color-on-secondary: #ffffff;
+      --color-secondary-container: #e9ddff;
+      --color-on-secondary-container: #23005c;
+      --color-outline: #747783;
+      --color-outline-variant: #c3c6d3;
+      --color-surface-container: #eaeae9;
+      --color-surface-container-low: #f2f2f1;
+      --color-surface-container-lowest: #ffffff;
+      --color-glass-bg: rgba(255, 255, 255, 0.75);
+      --color-glass-border: rgba(0, 0, 0, 0.08);
+      --text-gradient-start: #0056bd;
+      --text-gradient-end: #571bc1;
+      --scrollbar-thumb: #0056bd;
+      --scrollbar-track: #f3f3f4;
+    }
+
+    .dark {
+      --color-background: #131313;
+      --color-on-background: #e5e2e1;
+      --color-surface: #131313;
+      --color-on-surface: #e5e2e1;
+      --color-surface-variant: #353534;
+      --color-on-surface-variant: #c2c6d6;
+      --color-primary: #adc6ff;
+      --color-on-primary: #002e6a;
+      --color-primary-container: #4d8eff;
+      --color-on-primary-container: #00285d;
+      --color-secondary: #d0bcff;
+      --color-on-secondary: #3c0091;
+      --color-secondary-container: #571bc1;
+      --color-on-secondary-container: #c4abff;
+      --color-outline: #8c909f;
+      --color-outline-variant: #424754;
+      --color-surface-container: #201f1f;
+      --color-surface-container-low: #1c1b1b;
+      --color-surface-container-lowest: #0e0e0e;
+      --color-glass-bg: rgba(18, 18, 18, 0.7);
+      --color-glass-border: rgba(140, 144, 159, 0.15);
+      --text-gradient-start: #adc6ff;
+      --text-gradient-end: #d0bcff;
+      --scrollbar-thumb: #adc6ff;
+      --scrollbar-track: #131313;
+    }
+
+    html {
+      font-size: 14.5px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      vertical-align: middle;
+    }
+    
+    .glass-card {
+      background: var(--color-glass-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--color-glass-border);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .glass-card:hover {
+      border-color: rgba(173, 198, 255, 0.4);
+      box-shadow: 0 0 20px rgba(173, 198, 255, 0.1);
+      transform: translateY(-4px);
+    }
+
+    .glow-overlay {
+      background: radial-gradient(circle at 50% 50%, rgba(173, 198, 255, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .text-gradient {
+      background: linear-gradient(135deg, var(--text-gradient-start) 0%, var(--text-gradient-end) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--scrollbar-track);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--scrollbar-thumb);
+      border-radius: 10px;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0px); }
+    }
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    /* Print styles for Resume */
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #resume-modal, #resume-modal * {
+        visibility: visible;
+      }
+      #resume-modal {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        background: white !important;
+        color: #1f2937 !important;
+      }
+      .modal-card {
+        border: none !important;
+        box-shadow: none !important;
+        background: white !important;
+        max-height: none !important;
+        overflow: visible !important;
+      }
+      .modal-header, .modal-close-btn {
+        display: none !important;
+      }
+      .resume-sheet {
+        box-shadow: none !important;
+        padding: 0 !important;
+        background: white !important;
+        color: #1f2937 !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface selection:bg-primary/30 selection:text-primary transition-colors duration-300">
+
+  <!-- Top Navigation Bar -->
+  <nav class="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-xl border-b border-outline-variant/20 shadow-sm">
+    <div class="max-w-container-max mx-auto px-margin-x flex justify-between items-center h-20">
+      <a class="font-headline-md text-headline-md font-bold text-primary tracking-tighter" href="#">M.A. JAMA</a>
+      
+      <!-- Desktop Navigation Menu -->
+      <div class="hidden md:flex items-center gap-8" id="nav-menu-desktop">
+        <a class="nav-link font-body-lg text-body-lg text-on-surface-variant hover:text-primary transition-colors" href="#about">About</a>
+        <a class="nav-link font-body-lg text-body-lg text-on-surface-variant hover:text-primary transition-colors" href="#skills">Skills</a>
+        <a class="nav-link font-body-lg text-body-lg text-on-surface-variant hover:text-primary transition-colors" href="#projects">Projects</a>
+        <a class="nav-link font-body-lg text-body-lg text-on-surface-variant hover:text-primary transition-colors" href="#experience">Experience</a>
+        <a class="nav-link font-body-lg text-body-lg text-on-surface-variant hover:text-primary transition-colors" href="#contact">Contact</a>
+      </div>
+      
+      <!-- Actions Block -->
+      <div class="flex items-center gap-4">
+        <!-- Theme Toggle -->
+        <button id="theme-toggle" class="p-2.5 rounded-full border border-outline-variant/30 hover:bg-surface-variant/30 text-on-surface-variant hover:text-primary transition-colors" aria-label="Toggle theme">
+          <span class="material-symbols-outlined sun-icon block">light_mode</span>
+          <span class="material-symbols-outlined moon-icon hidden">dark_mode</span>
+        </button>
+        <a class="bg-primary-container text-on-primary-container px-6 py-2.5 rounded-full font-bold active:scale-95 transition-transform hover:brightness-110" href="#contact">Hire Me</a>
+        
+        <!-- Mobile Menu Trigger -->
+        <button class="md:hidden flex flex-col justify-between w-6 h-4 text-on-surface" id="mobile-menu-btn" aria-label="Toggle mobile drawer">
+          <span class="w-full h-0.5 bg-current transition-all duration-300"></span>
+          <span class="w-full h-0.5 bg-current transition-all duration-300"></span>
+          <span class="w-full h-0.5 bg-current transition-all duration-300"></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Drawer Menu Overlay -->
+  <div class="fixed inset-0 w-full h-full bg-black/60 backdrop-blur-sm z-40 hidden transition-opacity duration-300" id="mobile-drawer-overlay"></div>
+  <div class="fixed top-0 right-0 w-64 h-full bg-surface-container z-50 transform translate-x-full transition-transform duration-300 shadow-2xl flex flex-col justify-between p-8" id="mobile-drawer">
+    <div class="space-y-8">
+      <div class="flex justify-between items-center">
+        <span class="font-headline-md text-primary font-bold">Menu</span>
+        <button class="p-2 text-on-surface-variant hover:text-primary" id="mobile-drawer-close">
+          <span class="material-symbols-outlined text-2xl">close</span>
+        </button>
+      </div>
+      <div class="flex flex-col gap-6">
+        <a class="nav-link font-body-lg text-body-lg text-on-surface-variant hover:text-primary" href="#about">About</a>
+        <a class="nav-link font-body-lg text-body-lg text-on-surface-variant hover:text-primary" href="#skills">Skills</a>
+        <a class="nav-link font-body-lg text-body-lg text-on-surface-variant hover:text-primary" href="#projects">Projects</a>
+        <a class="nav-link font-body-lg text-body-lg text-on-surface-variant hover:text-primary" href="#experience">Experience</a>
+        <a class="nav-link font-body-lg text-body-lg text-on-surface-variant hover:text-primary" href="#contact">Contact</a>
+      </div>
+    </div>
+    <div class="font-code-label text-on-surface-variant/60 text-center border-t border-outline-variant/15 pt-4">
+      M.A. JAMA • 2026
+    </div>
+  </div>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center pt-24 pb-12 overflow-hidden" id="home">
+      <div class="absolute inset-0 glow-overlay"></div>
+      
+      <!-- Atmospheric Glows -->
+      <div class="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] bg-primary/10 blur-[120px] rounded-full"></div>
+      <div class="absolute bottom-[10%] -right-[5%] w-[40%] h-[40%] bg-secondary/10 blur-[120px] rounded-full"></div>
+      
+      <div class="max-w-container-max mx-auto px-margin-x grid md:grid-cols-2 gap-12 items-center relative z-10">
+        <div class="space-y-stack-md">
+          <div class="inline-flex items-center gap-2 bg-surface-variant/30 border border-outline-variant/30 px-4 py-1.5 rounded-full">
+            <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+            <span class="font-code-label text-code-label text-on-surface-variant uppercase tracking-widest">AVAILABLE FOR JUNIOR DEVELOPER ROLES</span>
+          </div>
+          <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface leading-none">
+            Fullstack Developer <span class="text-gradient">Building Modern</span> Web Applications &amp; SaaS Platforms
+          </h1>
+          <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+            I specialize in building scalable web applications, REST APIs, dashboard systems, and cloud-based solutions using modern technologies such as React, Node.js, TypeScript, and PostgreSQL.
+          </p>
+          <p class="font-body-lg text-body-lg text-on-surface-variant/80 max-w-xl text-[16px] italic">
+            Focused on creating clean, efficient, and user-friendly digital products.
+          </p>
+          <div class="flex flex-wrap gap-4 pt-4 items-center">
+            <a class="px-8 py-4 bg-primary text-on-primary rounded-xl font-bold hover:shadow-[0_0_30px_rgba(173,198,255,0.4)] transition-all active:scale-95" href="#projects">View Projects</a>
+            <button class="px-8 py-4 glass-card rounded-xl font-bold text-on-surface flex items-center gap-2" id="download-resume-hero">
+              Download Resume <span class="material-symbols-outlined">download</span>
+            </button>
+            <a class="px-4 py-4 font-bold text-on-surface-variant hover:text-primary flex items-center gap-1 transition-colors" href="#about">
+              Explore More <span class="material-symbols-outlined">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+        
+        <div class="hidden md:block relative">
+          <div class="relative z-10 glass-card p-4 rounded-3xl animate-float">
+            <img alt="Coding Workspace Display Monitor" class="rounded-2xl w-full aspect-square object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxTzBQ15eMr1SkBhxktw85BdVx4fb91r1K6xg2f1AmNk0Nw_czjM9DwfTBkejNLb-a8Wi7kAOigJjb6fa046H9VX2gqAon8wP_46JGwTHKEkaVl-qC45acmseFbpdwo_7sc0rbrxVDVOWSBVBV_vsMcOXl161eC_wabBEDLmB0ekgAtY4AC-xOa46gSg8-WjvZEedo9z70IWnnaQZRYyj6QzWyP_cG3ClUwbmPi2bQyI6b6Emy61HWa4KaIk_xkd7ub0wvtWu07Fs"/>
+          </div>
+          <div class="absolute -bottom-6 -left-6 glass-card p-6 rounded-2xl z-20">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 bg-primary-container rounded-full flex items-center justify-center">
+                <span class="material-symbols-outlined text-on-primary-container" style="font-variation-settings: 'FILL' 1;">terminal</span>
+              </div>
+              <div>
+                <p class="font-headline-md text-primary font-bold">100%</p>
+                <p class="font-code-label text-on-surface-variant">Code Quality</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-section-gap" id="about">
+      <div class="max-w-container-max mx-auto px-margin-x">
+        <div class="grid md:grid-cols-2 gap-16 items-center">
+          <div class="space-y-stack-md order-2 md:order-1">
+            <h2 class="font-headline-md text-headline-md text-on-surface">About <span class="text-primary">Me</span></h2>
+            <div class="h-1 w-20 bg-primary rounded-full"></div>
+            
+            <p class="font-body-lg text-body-lg text-on-surface-variant">
+              I’m a Fullstack Developer and Computer Engineering student focused on building scalable web applications, SaaS platforms, and backend systems.
+            </p>
+            <p class="font-body-lg text-body-lg text-on-surface-variant">
+              I work with React, Node.js, TypeScript, PostgreSQL, and REST APIs to create modern, user-focused digital products.
+            </p>
+            <p class="font-body-lg text-body-lg text-on-surface-variant/90 text-[16px]">
+              Currently improving my skills in software architecture, cloud systems, and fullstack development while contributing to real-world projects and business solutions.
+            </p>
+            
+            <div class="grid grid-cols-2 gap-6 pt-4">
+              <div class="glass-card p-4 rounded-xl">
+                <p class="font-headline-md text-on-surface font-bold text-[20px] md:text-[24px]">Student</p>
+                <p class="font-body-sm text-on-surface-variant">Computer Engineering</p>
+              </div>
+              <div class="glass-card p-4 rounded-xl">
+                <p class="font-headline-md text-on-surface font-bold text-[20px] md:text-[24px]">Focus</p>
+                <p class="font-body-sm text-on-surface-variant">Cloud &amp; Fullstack</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="relative order-1 md:order-2">
+            <div class="aspect-square bg-primary/20 absolute -inset-4 blur-3xl rounded-full"></div>
+            <div class="relative z-10 rounded-3xl overflow-hidden glass-card p-3 border border-outline-variant/30 group">
+              <!-- Grayscale to colored hover illustration frames developer graphic instead of AI Portrait -->
+              <img alt="Mohamed Jama | Professional headshot portrait" class="rounded-2xl w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" src="assets/portrait.jpg"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Stack Section -->
+    <section class="py-section-gap bg-surface-container-lowest/50 border-y border-outline-variant/10" id="skills">
+      <div class="max-w-container-max mx-auto px-margin-x">
+        <div class="text-center mb-stack-lg space-y-4">
+          <h2 class="font-headline-md text-headline-md text-on-surface">Technical Stack</h2>
+          <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">Leveraging the latest technologies to build high-end digital products.</p>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-10">
+          <!-- Skill Card 1: React.js -->
+          <div class="glass-card p-6 rounded-2xl flex flex-col items-center gap-4 text-center group">
+            <div class="w-14 h-14 rounded-full bg-surface-variant flex items-center justify-center group-hover:bg-primary-container transition-colors">
+              <span class="material-symbols-outlined text-primary group-hover:text-on-primary-container text-3xl">javascript</span>
+            </div>
+            <div class="space-y-1">
+              <p class="font-body-lg text-on-surface font-bold">React.js</p>
+              <p class="font-code-label text-primary uppercase text-[10px] tracking-wider font-semibold">Proficient</p>
+              <p class="font-body-sm text-[12px] text-on-surface-variant max-w-[180px] leading-snug">Building modern responsive interfaces</p>
+            </div>
+          </div>
+          
+          <!-- Skill Card 2: Node.js -->
+          <div class="glass-card p-6 rounded-2xl flex flex-col items-center gap-4 text-center group">
+            <div class="w-14 h-14 rounded-full bg-surface-variant flex items-center justify-center group-hover:bg-primary-container transition-colors">
+              <span class="material-symbols-outlined text-primary group-hover:text-on-primary-container text-3xl">dns</span>
+            </div>
+            <div class="space-y-1">
+              <p class="font-body-lg text-on-surface font-bold">Node.js</p>
+              <p class="font-code-label text-primary uppercase text-[10px] tracking-wider font-semibold">Proficient</p>
+              <p class="font-body-sm text-[12px] text-on-surface-variant max-w-[180px] leading-snug">Backend APIs &amp; scalable systems</p>
+            </div>
+          </div>
+          
+          <!-- Skill Card 3: Express.js -->
+          <div class="glass-card p-6 rounded-2xl flex flex-col items-center gap-4 text-center group">
+            <div class="w-14 h-14 rounded-full bg-surface-variant flex items-center justify-center group-hover:bg-primary-container transition-colors">
+              <span class="material-symbols-outlined text-primary group-hover:text-on-primary-container text-3xl">layers</span>
+            </div>
+            <div class="space-y-1">
+              <p class="font-body-lg text-on-surface font-bold">Express.js</p>
+              <p class="font-code-label text-primary uppercase text-[10px] tracking-wider font-semibold">Proficient</p>
+              <p class="font-body-sm text-[12px] text-on-surface-variant max-w-[180px] leading-snug">Lightweight modular backend routing</p>
+            </div>
+          </div>
+          
+          <!-- Skill Card 4: TypeScript -->
+          <div class="glass-card p-6 rounded-2xl flex flex-col items-center gap-4 text-center group">
+            <div class="w-14 h-14 rounded-full bg-surface-variant flex items-center justify-center group-hover:bg-primary-container transition-colors">
+              <span class="material-symbols-outlined text-primary group-hover:text-on-primary-container text-3xl">code</span>
+            </div>
+            <div class="space-y-1">
+              <p class="font-body-lg text-on-surface font-bold">TypeScript</p>
+              <p class="font-code-label text-primary uppercase text-[10px] tracking-wider font-semibold">Intermediate</p>
+              <p class="font-body-sm text-[12px] text-on-surface-variant max-w-[180px] leading-snug">Type-safe software development</p>
+            </div>
+          </div>
+          
+          <!-- Skill Card 5: PostgreSQL -->
+          <div class="glass-card p-6 rounded-2xl flex flex-col items-center gap-4 text-center group">
+            <div class="w-14 h-14 rounded-full bg-surface-variant flex items-center justify-center group-hover:bg-primary-container transition-colors">
+              <span class="material-symbols-outlined text-primary group-hover:text-on-primary-container text-3xl">database</span>
+            </div>
+            <div class="space-y-1">
+              <p class="font-body-lg text-on-surface font-bold">PostgreSQL</p>
+              <p class="font-code-label text-primary uppercase text-[10px] tracking-wider font-semibold">Intermediate</p>
+              <p class="font-body-sm text-[12px] text-on-surface-variant max-w-[180px] leading-snug">Relational database architecture</p>
+            </div>
+          </div>
+          
+          <!-- Skill Card 6: REST APIs -->
+          <div class="glass-card p-6 rounded-2xl flex flex-col items-center gap-4 text-center group">
+            <div class="w-14 h-14 rounded-full bg-surface-variant flex items-center justify-center group-hover:bg-primary-container transition-colors">
+              <span class="material-symbols-outlined text-primary group-hover:text-on-primary-container text-3xl">api</span>
+            </div>
+            <div class="space-y-1">
+              <p class="font-body-lg text-on-surface font-bold">REST APIs</p>
+              <p class="font-code-label text-primary uppercase text-[10px] tracking-wider font-semibold">Proficient</p>
+              <p class="font-body-sm text-[12px] text-on-surface-variant max-w-[180px] leading-snug">Designing secure data interfaces</p>
+            </div>
+          </div>
+
+          <!-- Skill Card 7: Git & GitHub -->
+          <div class="glass-card p-6 rounded-2xl flex flex-col items-center gap-4 text-center group">
+            <div class="w-14 h-14 rounded-full bg-surface-variant flex items-center justify-center group-hover:bg-primary-container transition-colors">
+              <span class="material-symbols-outlined text-primary group-hover:text-on-primary-container text-3xl">merge</span>
+            </div>
+            <div class="space-y-1">
+              <p class="font-body-lg text-on-surface font-bold">Git &amp; GitHub</p>
+              <p class="font-code-label text-primary uppercase text-[10px] tracking-wider font-semibold">Proficient</p>
+              <p class="font-body-sm text-[12px] text-on-surface-variant max-w-[180px] leading-snug">Version control &amp; team collaboration</p>
+            </div>
+          </div>
+
+          <!-- Skill Card 8: Authentication Systems -->
+          <div class="glass-card p-6 rounded-2xl flex flex-col items-center gap-4 text-center group">
+            <div class="w-14 h-14 rounded-full bg-surface-variant flex items-center justify-center group-hover:bg-primary-container transition-colors">
+              <span class="material-symbols-outlined text-primary group-hover:text-on-primary-container text-3xl">key</span>
+            </div>
+            <div class="space-y-1">
+              <p class="font-body-lg text-on-surface font-bold">Auth Systems</p>
+              <p class="font-code-label text-primary uppercase text-[10px] tracking-wider font-semibold">Intermediate</p>
+              <p class="font-body-sm text-[12px] text-on-surface-variant max-w-[180px] leading-snug">JWT session &amp; role access control</p>
+            </div>
+          </div>
+
+          <!-- Skill Card 9: Tailwind CSS -->
+          <div class="glass-card p-6 rounded-2xl flex flex-col items-center gap-4 text-center group">
+            <div class="w-14 h-14 rounded-full bg-surface-variant flex items-center justify-center group-hover:bg-primary-container transition-colors">
+              <span class="material-symbols-outlined text-primary group-hover:text-on-primary-container text-3xl">css</span>
+            </div>
+            <div class="space-y-1">
+              <p class="font-body-lg text-on-surface font-bold">Tailwind CSS</p>
+              <p class="font-code-label text-primary uppercase text-[10px] tracking-wider font-semibold">Proficient</p>
+              <p class="font-body-sm text-[12px] text-on-surface-variant max-w-[180px] leading-snug">Rapid responsive custom styling</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section (High Fidelity Bento Grid) -->
+    <section class="py-section-gap" id="projects">
+      <div class="max-w-container-max mx-auto px-margin-x">
+        <div class="mb-stack-lg space-y-2">
+          <h2 class="font-headline-md text-headline-md text-on-surface">Selected Projects</h2>
+          <p class="font-body-lg text-on-surface-variant">A collection of systems engineered for high-impact performance.</p>
+        </div>
+        
+        <!-- Bento Grid Projects -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 mt-10">
+          
+          <!-- Project 1: School Management (8/12 Cols) -->
+          <div class="md:col-span-8 group relative overflow-hidden rounded-3xl glass-card flex flex-col justify-end min-h-[460px]">
+            <img alt="School Management System interface" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-60 group-hover:opacity-75" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpPMJljU3EOGQFZU7QqnnjmU6xa52LdLOjG36ELSvz26QGdxxiLSk7p8kQCvlkqZMt0mJh2W5UHEV1uWTbim4iQ7RuB0ihWlOtku4Cg9l0ae3Ig_pYxhKi1j0H6P9EqdxqGQuWdrQYomRlzXDv2A7mWYHI771wLR_ccksuHKOFG2V3Y0-Hw2pk8AFH0KNKc4hXs--qGd1DtfZZUBX95VhbzjgRTf7gHlAvIIuA2mnrCVcTs2Tk_7PAT24io6_CCrj1hIfHcska8Yg"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent"></div>
+            
+            <div class="relative p-8 space-y-4">
+              <div class="flex flex-wrap gap-2">
+                <span class="font-code-label text-[10px] px-3 py-1 bg-primary/10 border border-primary/30 text-primary rounded-full uppercase tracking-wider">React • Node.js • PostgreSQL • REST APIs • Authentication System</span>
+              </div>
+              <h3 class="font-headline-md text-on-surface text-[26px]">School Management System</h3>
+              <p class="text-on-surface-variant max-w-xl text-[15px]">
+                A role-based school management platform similar to OBS systems with separate dashboards and permissions for admins, teachers, and students.
+              </p>
+              <div class="flex gap-4 pt-2">
+                <a class="inline-flex items-center gap-2 text-primary hover:text-white font-bold transition-colors" href="https://github.com/MOHAMEDJAMA1/SOMEDU" target="_blank">
+                  GitHub Repository <span class="material-symbols-outlined text-[18px]">code_blocks</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Project 2: Cloud Security Dashboard (4/12 Cols) -->
+          <div class="md:col-span-4 group relative overflow-hidden rounded-3xl glass-card flex flex-col justify-end min-h-[460px]">
+            <img alt="Cloud security networks mockup" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-60 group-hover:opacity-75" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASQfMSkbXh_KMcQNCa3CDAjbz8Q1ayiZvR3msMVIzS1aTRDfbE5ngDVQUg40QZuIENTd-pslOuXJpj9VZF3sWQJ5DIaJxX8M-icRx7PeU7LeOFrVRxdNHHxkNxij-mjzB6m29IvI1sfL_0fXoCjSrFR6nIdp0QCuEKK04LBpdoglf70ijIyjnrpn91jUhWohbVWH8gmCmV0-YHAee9pDqFSyCZ5QeLN0HWwM2XoHuepYQuWaCAn5AX3SSXEc-taXqPjmHay4Ssttk"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent"></div>
+            
+            <div class="relative p-8 space-y-4">
+              <div class="flex flex-wrap gap-2">
+                <span class="font-code-label text-[10px] px-3 py-1 bg-primary/10 border border-primary/30 text-primary rounded-full uppercase tracking-wider">React • Node.js • PostgreSQL • Cloud Architecture</span>
+              </div>
+              <h3 class="font-headline-md text-on-surface text-[24px]">Cloud Security Dashboard</h3>
+              <p class="text-on-surface-variant text-[15px]">
+                A cloud security monitoring dashboard focused on threat detection, log analysis, and real-time monitoring workflows for scalable systems.
+              </p>
+              <div class="flex gap-4 pt-2">
+                <a class="inline-flex items-center gap-2 text-primary hover:text-white font-bold transition-colors" href="https://github.com/MOHAMEDJAMA1/cloud-security" target="_blank">
+                  GitHub Repository <span class="material-symbols-outlined text-[18px]">code_blocks</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Project 3: SaaS Business Platform (6/12 Cols) -->
+          <div class="md:col-span-6 group relative overflow-hidden rounded-3xl glass-card flex flex-col justify-end min-h-[400px]">
+            <img alt="SaaS business platform visual mockup" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-60 group-hover:opacity-75" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXo3VjqY88jlT1NLxVNX7eXyZGUalibG7PT45JYsde28UHr3PYxhYmkhuMo5QwKeP-ujamZNDXeyJ6Gae05jcCCrpvKA8lKz_8Ti1KlKCHODiJVzk2M2hE1XMdYBz3B7hYWueSMf__mQzjD791E-4UIszUyHxbYUFpBtGk88a2BMd1uRiHdLqLHgb79GZhXkDwJS3r4RxU3_ytIg6CKV3ZlilLC5V2HR9SMEh2BPZ0lkcjRzItbaom0X4YyIT3GpT7nS3lWOdv9HA"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent"></div>
+            
+            <div class="relative p-8 space-y-4">
+              <div class="flex flex-wrap gap-2">
+                <span class="font-code-label text-[10px] px-3 py-1 bg-primary/10 border border-primary/30 text-primary rounded-full uppercase tracking-wider">React • TypeScript • Node.js • API Integration</span>
+              </div>
+              <h3 class="font-headline-md text-on-surface text-[24px]">SaaS Business Platform</h3>
+              <p class="text-on-surface-variant text-[15px]">
+                A scalable SaaS-style business management platform focused on automation, workflow management, and user-friendly dashboard systems.
+              </p>
+              <div class="flex gap-4 pt-2">
+                <a class="inline-flex items-center gap-2 text-primary hover:text-white font-bold transition-colors" href="https://github.com/MOHAMEDJAMA1/saas-business-platform" target="_blank">
+                  GitHub Repository <span class="material-symbols-outlined text-[18px]">code_blocks</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Project 4: REST API System (6/12 Cols) -->
+          <div class="md:col-span-6 group relative overflow-hidden rounded-3xl glass-card flex flex-col justify-end min-h-[400px]">
+            <img alt="REST API network node pathways" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-60 group-hover:opacity-75" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZE5aEY9litcDiJBiSXUTT3UG6tPQ__5O79j2gm_0o_QnQEBQdJBV01YCc5G9CtUtlR8AMQd6cni2AD5b41pm8uP2dTiabF5i2bz8zwYNXqEriWI2ZqVPXGz-oF4Hz_kPh1CeMKW7oN3reh4Lj1NLl-be-J1qlW21rUJJD0duUi3oXrZhmP6FSnrEfhVZuHDtXIlCq9oHEhVr73JPrHXxNVAX48DE2WOGb64rlWZXTE89aRDCel7e_7RkClY4u5w8cZfM30Uyv9gs"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent"></div>
+            
+            <div class="relative p-8 space-y-4">
+              <div class="flex flex-wrap gap-2">
+                <span class="font-code-label text-[10px] px-3 py-1 bg-primary/10 border border-primary/30 text-primary rounded-full uppercase tracking-wider">Node.js • Express.js • PostgreSQL • JWT Authentication</span>
+              </div>
+              <h3 class="font-headline-md text-on-surface text-[24px]">REST API System</h3>
+              <p class="text-on-surface-variant text-[15px]">
+                A backend-focused REST API architecture implementing authentication, role-based access control, and scalable API workflows.
+              </p>
+              <div class="flex gap-4 pt-2">
+                <a class="inline-flex items-center gap-2 text-primary hover:text-white font-bold transition-colors" href="https://github.com/MOHAMEDJAMA1/rest-api-system" target="_blank">
+                  GitHub Repository <span class="material-symbols-outlined text-[18px]">code_blocks</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section (Mockup Styled check icons) -->
+    <section class="py-section-gap bg-surface-container-lowest/50 border-y border-outline-variant/10" id="experience">
+      <div class="max-w-container-max mx-auto px-margin-x">
+        <div class="grid md:grid-cols-12 gap-12">
+          <div class="md:col-span-4">
+            <h2 class="font-headline-md text-headline-md text-on-surface">Experience</h2>
+            <p class="font-body-lg text-on-surface-variant mt-4">Bridging academic excellence with real-world industry application.</p>
+          </div>
+          <div class="md:col-span-8">
+            <div class="glass-card p-8 rounded-3xl relative overflow-hidden">
+              <div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full"></div>
+              
+              <div class="flex flex-col md:flex-row justify-between mb-6">
+                <div>
+                  <h3 class="font-headline-md text-on-surface text-[22px] font-bold">Alnaciim Water Company</h3>
+                  <p class="text-primary font-bold mt-1">Software Developer</p>
+                </div>
+                <span class="font-code-label text-on-surface-variant mt-2 md:mt-0 font-bold uppercase">2025 — Present</span>
+              </div>
+              
+              <ul class="space-y-4 text-on-surface-variant text-[15px]">
+                <li class="flex gap-3 items-start">
+                  <span class="material-symbols-outlined text-primary mt-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                  <span>Developed and maintained web applications and internal business systems</span>
+                </li>
+                <li class="flex gap-3 items-start">
+                  <span class="material-symbols-outlined text-primary mt-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                  <span>Built and integrated REST APIs for backend services and platform functionality</span>
+                </li>
+                <li class="flex gap-3 items-start">
+                  <span class="material-symbols-outlined text-primary mt-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                  <span>Contributed to frontend and backend development using modern web technologies</span>
+                </li>
+                <li class="flex gap-3 items-start">
+                  <span class="material-symbols-outlined text-primary mt-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                  <span>Supported database design, system architecture, and application scalability</span>
+                </li>
+                <li class="flex gap-3 items-start">
+                  <span class="material-symbols-outlined text-primary mt-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                  <span>Worked on software solutions to improve operational workflows and efficiency</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-section-gap" id="contact">
+      <div class="max-w-container-max mx-auto px-margin-x">
+        <div class="glass-card p-8 md:p-12 rounded-[3rem] text-center relative overflow-hidden">
+          <div class="absolute -top-20 -left-20 w-64 h-64 bg-primary/10 blur-[80px] rounded-full"></div>
+          <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-secondary/10 blur-[80px] rounded-full"></div>
+          
+          <h2 class="font-headline-md text-headline-md text-on-surface mb-4">Let's Build Something <span class="text-gradient">Extraordinary</span></h2>
+          <p class="font-body-lg text-on-surface-variant mb-12 max-w-xl mx-auto">Available for freelance opportunities and full-time engineering roles. Let's discuss your next project.</p>
+          
+          <div class="flex flex-wrap justify-center gap-8">
+            <a class="flex flex-col items-center gap-4 group" href="mailto:codewithmo7@gmail.com">
+              <div class="w-16 h-16 rounded-2xl bg-surface-variant flex items-center justify-center group-hover:bg-primary transition-all group-hover:-translate-y-2">
+                <span class="material-symbols-outlined text-on-surface-variant group-hover:text-on-primary text-3xl">mail</span>
+              </div>
+              <span class="font-code-label text-on-surface-variant">Email</span>
+            </a>
+            <a class="flex flex-col items-center gap-4 group" href="https://linkedin.com/in/mohamedjama" target="_blank">
+              <div class="w-16 h-16 rounded-2xl bg-surface-variant flex items-center justify-center group-hover:bg-primary transition-all group-hover:-translate-y-2">
+                <span class="material-symbols-outlined text-on-surface-variant group-hover:text-on-primary text-3xl">hub</span>
+              </div>
+              <span class="font-code-label text-on-surface-variant">LinkedIn</span>
+            </a>
+            <a class="flex flex-col items-center gap-4 group" href="https://github.com/MOHAMEDJAMA1" target="_blank">
+              <div class="w-16 h-16 rounded-2xl bg-surface-variant flex items-center justify-center group-hover:bg-primary transition-all group-hover:-translate-y-2">
+                <span class="material-symbols-outlined text-on-surface-variant group-hover:text-on-primary text-3xl">code_blocks</span>
+              </div>
+              <span class="font-code-label text-on-surface-variant">GitHub</span>
+            </a>
+          </div>
+          
+          <form class="mt-16 flex flex-col md:flex-row items-center justify-center gap-6" id="contact-form">
+            <input class="bg-surface-container-low border border-outline-variant px-6 py-4 rounded-xl w-full max-w-sm text-on-surface focus:outline-none focus:border-primary transition-colors" placeholder="Enter your email" type="email" id="form-email" required/>
+            <button class="bg-primary text-on-primary px-10 py-4 rounded-xl font-bold hover:shadow-[0_0_20px_rgba(173,198,255,0.3)] transition-all flex items-center gap-2" id="form-submit-btn" type="submit">
+              <span>Send Message</span>
+              <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="hidden"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full py-stack-lg bg-surface-container-lowest border-t border-outline-variant/10">
+    <div class="max-w-container-max mx-auto px-margin-x flex flex-col md:flex-row justify-between items-center gap-stack-md">
+      <div class="flex flex-col items-center md:items-start">
+        <span class="font-headline-md text-primary font-bold tracking-tighter mb-2">M.A. JAMA</span>
+        <p class="font-body-sm text-on-surface-variant">© 2026 Mohamed Abshir Jama.</p>
+      </div>
+      <div class="flex gap-8">
+        <a class="font-body-sm text-on-surface-variant hover:text-primary transition-colors" href="https://linkedin.com/in/mohamedjama">LinkedIn</a>
+        <a class="font-body-sm text-on-surface-variant hover:text-primary transition-colors" href="https://github.com/MOHAMEDJAMA1">GitHub</a>
+        <a class="font-body-sm text-on-surface-variant hover:text-primary transition-colors" href="mailto:codewithmo7@gmail.com">Email</a>
+      </div>
+      <div class="font-code-label text-on-surface-variant">
+        Fullstack Engineering <span class="text-primary">•</span> 2026
+      </div>
+    </div>
+  </footer>
+
+  <!-- Resume Preview Modal -->
+  <div id="resume-modal" class="fixed inset-0 w-full h-full bg-black/60 backdrop-blur-md z-[1000] flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 p-4">
+    <div class="bg-surface-container border border-outline-variant/30 rounded-3xl w-full max-w-3xl max-h-[90vh] flex flex-col relative overflow-hidden transition-transform duration-300 translate-y-4 modal-card">
+      <button class="absolute top-4 right-6 text-2xl text-on-surface-variant hover:text-primary modal-close-btn" id="modal-close-btn" aria-label="Close modal">&times;</button>
+      
+      <div class="p-6 border-b border-outline-variant/20 flex items-center justify-between pr-14 modal-header">
+        <h3 class="font-headline-md text-[20px] text-on-surface">Mohamed Jama — Resume</h3>
+        <button id="modal-download-btn" class="bg-primary text-on-primary px-5 py-2 rounded-xl font-bold hover:shadow-[0_0_15px_rgba(173,198,255,0.3)] transition-all flex items-center gap-1.5 text-[13px]">
+          <span class="material-symbols-outlined text-[16px]">print</span> Print PDF
+        </button>
+      </div>
+      
+      <div class="overflow-y-auto p-6 bg-surface-container-lowest/80 flex-grow scrollable">
+        <!-- Structured printable resume format -->
+        <div class="resume-sheet bg-white text-gray-800 p-8 rounded-lg shadow-inner">
+          <div class="resume-sheet-header flex flex-col md:flex-row justify-between items-start md:items-end border-b-2 border-gray-700 pb-4 mb-6">
+            <div>
+              <h1 class="resume-sheet-name text-3xl font-extrabold text-gray-900 leading-tight">Mohamed Jama</h1>
+              <p class="resume-sheet-title text-[15px] font-semibold text-gray-600">Fullstack Developer &amp; Computer Engineering Student</p>
+            </div>
+            <div class="resume-sheet-contact text-xs text-gray-500 md:text-right mt-2 md:mt-0 leading-normal">
+              <div>codewithmo7@gmail.com</div>
+              <div>github.com/MOHAMEDJAMA1</div>
+              <div>linkedin.com/in/mohamedjama</div>
+            </div>
+          </div>
+          
+          <div class="resume-sheet-section mb-6">
+            <h2 class="resume-sheet-section-title text-[14px] font-bold text-gray-900 border-b border-gray-300 pb-1 mb-3 uppercase tracking-wider">Education</h2>
+            <div class="resume-sheet-item text-xs">
+              <div class="resume-sheet-item-header flex justify-between font-bold text-gray-900 mb-1">
+                <span>Bachelor of Science in Computer Engineering</span>
+                <span>2022 - Present</span>
+              </div>
+              <p class="text-gray-600">Focus: Distributed Systems, Cloud Architecture, Databases, Software Engineering</p>
+            </div>
+          </div>
+          
+          <div class="resume-sheet-section mb-6">
+            <h2 class="resume-sheet-section-title text-[14px] font-bold text-gray-900 border-b border-gray-300 pb-1 mb-3 uppercase tracking-wider">Skills &amp; Technologies</h2>
+            <div class="resume-sheet-skills-list text-xs text-gray-700 leading-relaxed">
+              <strong>Frontend:</strong> React.js, HTML5, CSS3, JavaScript, TypeScript, Tailwind CSS<br>
+              <strong>Backend:</strong> Node.js, Express.js, PostgreSQL, Redis, REST APIs, Python, Streamlit<br>
+              <strong>Tools &amp; Infrastructure:</strong> Git, Cloud Hosting, CI/CD, Linux, Docker, Telegram Bot API
+            </div>
+          </div>
+          
+          <div class="resume-sheet-section mb-6">
+            <h2 class="resume-sheet-section-title text-[14px] font-bold text-gray-900 border-b border-gray-300 pb-1 mb-3 uppercase tracking-wider">Professional Experience</h2>
+            <div class="resume-sheet-item text-xs">
+              <div class="resume-sheet-item-header flex justify-between font-bold text-gray-900 mb-1">
+                <span>Software Developer</span>
+                <span>Alnaciim Water Company | 2025 — Present</span>
+              </div>
+              <ul class="list-disc ml-4 mt-2 space-y-1 text-gray-700">
+                <li>Developed and maintained web applications and internal business systems</li>
+                <li>Built and integrated REST APIs for backend services and platform functionality</li>
+                <li>Contributed to frontend and backend development using modern web technologies</li>
+                <li>Supported database design, system architecture, and application scalability</li>
+                <li>Worked on software solutions to improve operational workflows and efficiency</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="resume-sheet-section mb-2">
+            <h2 class="resume-sheet-section-title text-[14px] font-bold text-gray-900 border-b border-gray-300 pb-1 mb-3 uppercase tracking-wider">Key Projects</h2>
+            <div class="resume-sheet-item text-xs mb-3">
+              <strong class="text-gray-900">School Management System</strong>
+              <p class="text-gray-600 mt-1">A role-based school management platform similar to OBS systems with separate dashboards and permissions for admins, teachers, and students.</p>
+            </div>
+            <div class="resume-sheet-item text-xs mb-3">
+              <strong class="text-gray-900">Cloud Security Dashboard</strong>
+              <p class="text-gray-600 mt-1">A cloud security monitoring dashboard focused on threat detection, log analysis, and real-time monitoring workflows for scalable systems.</p>
+            </div>
+            <div class="resume-sheet-item text-xs">
+              <strong class="text-gray-900">SaaS Business Platform</strong>
+              <p class="text-gray-600 mt-1">A scalable SaaS-style business management platform focused on automation, workflow management, and user-friendly dashboard systems.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Execution -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+      // ==========================================================================
+      // 1. THEME SWITCHER (TAILWIND CLASS DARK / LIGHT MODE)
+      // ==========================================================================
+      const themeToggle = document.getElementById('theme-toggle');
+      const sunIcon = themeToggle.querySelector('.sun-icon');
+      const moonIcon = themeToggle.querySelector('.moon-icon');
+
+      // Check saved theme or system theme setting
+      const savedTheme = localStorage.getItem('portfolio-theme');
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+      // Initial Theme State
+      if (savedTheme === 'light' || (!savedTheme && !systemPrefersDark)) {
+        document.documentElement.classList.remove('dark');
+        sunIcon.classList.add('hidden');
+        sunIcon.classList.remove('block');
+        moonIcon.classList.remove('hidden');
+        moonIcon.classList.add('block');
+      } else {
+        document.documentElement.classList.add('dark');
+        sunIcon.classList.remove('hidden');
+        sunIcon.classList.add('block');
+        moonIcon.classList.add('hidden');
+        moonIcon.classList.remove('block');
+      }
+
+      // Theme Toggle Listener
+      themeToggle.addEventListener('click', () => {
+        const isDark = document.documentElement.classList.contains('dark');
+        
+        if (isDark) {
+          document.documentElement.classList.remove('dark');
+          localStorage.setItem('portfolio-theme', 'light');
+          sunIcon.classList.add('hidden');
+          sunIcon.classList.remove('block');
+          moonIcon.classList.remove('hidden');
+          moonIcon.classList.add('block');
+        } else {
+          document.documentElement.classList.add('dark');
+          localStorage.setItem('portfolio-theme', 'dark');
+          sunIcon.classList.remove('hidden');
+          sunIcon.classList.add('block');
+          moonIcon.classList.add('hidden');
+          moonIcon.classList.remove('block');
+        }
+      });
+
+
+      // ==========================================================================
+      // 2. MOBILE MENU DRAWER
+      // ==========================================================================
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const mobileDrawer = document.getElementById('mobile-drawer');
+      const mobileDrawerOverlay = document.getElementById('mobile-drawer-overlay');
+      const mobileDrawerClose = document.getElementById('mobile-drawer-close');
+      const mobileDrawerLinks = mobileDrawer.querySelectorAll('.nav-link');
+
+      const openDrawer = () => {
+        mobileDrawerOverlay.classList.remove('hidden');
+        setTimeout(() => {
+          mobileDrawerOverlay.classList.add('opacity-100');
+        }, 10);
+        mobileDrawer.classList.remove('translate-x-full');
+        document.body.style.overflow = 'hidden';
+      };
+
+      const closeDrawer = () => {
+        mobileDrawerOverlay.classList.remove('opacity-100');
+        mobileDrawer.classList.add('translate-x-full');
+        document.body.style.overflow = '';
+        setTimeout(() => {
+          mobileDrawerOverlay.classList.add('hidden');
+        }, 300);
+      };
+
+      mobileMenuBtn.addEventListener('click', openDrawer);
+      mobileDrawerClose.addEventListener('click', closeDrawer);
+      mobileDrawerOverlay.addEventListener('click', closeDrawer);
+
+      // Close drawer on click links
+      mobileDrawerLinks.forEach(link => {
+        link.addEventListener('click', closeDrawer);
+      });
+
+
+      // ==========================================================================
+      // 3. SMOOTH SCROLL & ACTIVE LINK HIGHLIGHTER
+      // ==========================================================================
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const targetHref = this.getAttribute('href');
+          if (targetHref === '#') return;
+          const target = document.querySelector(targetHref);
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+
+      const sections = document.querySelectorAll('section');
+      const desktopLinks = document.querySelectorAll('#nav-menu-desktop .nav-link');
+
+      window.addEventListener('scroll', () => {
+        let current = "";
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          if (window.pageYOffset >= (sectionTop - 150)) {
+            current = section.getAttribute('id');
+          }
+        });
+
+        desktopLinks.forEach(link => {
+          link.classList.remove('text-primary', 'font-bold');
+          link.classList.add('text-on-surface-variant');
+          if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('text-primary', 'font-bold');
+            link.classList.remove('text-on-surface-variant');
+          }
+        });
+      });
+
+
+      // ==========================================================================
+      // 4. RESUME PREVIEW MODAL & HIGH-QUALITY PDF GENERATION/PRINTING
+      // ==========================================================================
+      const resumeModal = document.getElementById('resume-modal');
+      const downloadResumeHero = document.getElementById('download-resume-hero');
+      const modalCloseBtn = document.getElementById('modal-close-btn');
+      const modalDownloadBtn = document.getElementById('modal-download-btn');
+
+      const openModal = () => {
+        resumeModal.classList.remove('pointer-events-none');
+        resumeModal.classList.add('opacity-100', 'pointer-events-auto');
+        resumeModal.querySelector('.modal-card').classList.remove('translate-y-4');
+        document.body.style.overflow = 'hidden';
+      };
+
+      const closeModal = () => {
+        resumeModal.classList.add('pointer-events-none');
+        resumeModal.classList.remove('opacity-100', 'pointer-events-auto');
+        resumeModal.querySelector('.modal-card').classList.add('translate-y-4');
+        document.body.style.overflow = '';
+      };
+
+      if (downloadResumeHero) downloadResumeHero.addEventListener('click', openModal);
+      if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeModal);
+
+      // Close modal when clicking outside card overlay
+      resumeModal.addEventListener('click', (e) => {
+        if (e.target === resumeModal) {
+          closeModal();
+        }
+      });
+
+      // Handle ESC key to close modal
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && resumeModal.classList.contains('pointer-events-auto')) {
+          closeModal();
+        }
+      });
+
+      // Print function matching the exact structured sheet style
+      modalDownloadBtn.addEventListener('click', () => {
+        const resumeContent = document.querySelector('.resume-sheet').innerHTML;
+        
+        // Open printable viewport window
+        const printWindow = window.open('', '_blank', 'width=850,height=1100');
+        
+        printWindow.document.write(`
+          <html>
+            <head>
+              <title>Mohamed Jama - Resume</title>
+              <style>
+                body {
+                  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+                  color: #1f2937;
+                  background-color: #ffffff;
+                  padding: 40px;
+                  line-height: 1.5;
+                }
+                .resume-sheet-header {
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: flex-end;
+                  border-bottom: 2px solid #1f2937;
+                  padding-bottom: 16px;
+                  margin-bottom: 24px;
+                }
+                .resume-sheet-name {
+                  font-size: 28px;
+                  color: #111827;
+                  font-weight: 800;
+                  margin: 0 0 4px 0;
+                }
+                .resume-sheet-title {
+                  font-size: 15px;
+                  color: #4b5563;
+                  font-weight: 600;
+                  margin: 0;
+                }
+                .resume-sheet-contact {
+                  font-size: 12px;
+                  color: #6b7280;
+                  text-align: right;
+                  line-height: 1.4;
+                }
+                .resume-sheet-section {
+                  margin-bottom: 24px;
+                }
+                .resume-sheet-section-title {
+                  font-size: 14px;
+                  text-transform: uppercase;
+                  color: #111827;
+                  border-bottom: 1px solid #d1d5db;
+                  padding-bottom: 4px;
+                  margin-bottom: 12px;
+                  letter-spacing: 0.05em;
+                  font-weight: 700;
+                }
+                .resume-sheet-item {
+                  margin-bottom: 16px;
+                  font-size: 13px;
+                }
+                .resume-sheet-item-header {
+                  display: flex;
+                  justify-content: space-between;
+                  font-size: 13px;
+                  color: #111827;
+                  font-weight: 700;
+                  margin-bottom: 4px;
+                }
+                .resume-sheet-skills-list {
+                  font-size: 13px;
+                  color: #374151;
+                  line-height: 1.6;
+                }
+                p {
+                  color: #4b5563;
+                  margin: 4px 0 0 0;
+                }
+                ul {
+                  margin: 6px 0 0 16px;
+                  padding: 0;
+                  color: #374151;
+                }
+                li {
+                  margin-bottom: 6px;
+                }
+                @media print {
+                  body {
+                    padding: 0;
+                  }
+                }
+              </style>
+            </head>
+            <body>
+              <div class="resume-sheet">
+                \${resumeContent}
+              </div>
+              <script>
+                window.onload = function() {
+                  window.print();
+                  setTimeout(function() { window.close(); }, 500);
+                };
+              <\/script>
+            </body>
+          </html>
+        `);
+        
+        printWindow.document.close();
+      });
+
+
+      // ==========================================================================
+      // 5. CONTACT FORM INTERACTION & SUCCESS ANIMATION
+      // ==========================================================================
+      const contactForm = document.getElementById('contact-form');
+      const submitBtn = document.getElementById('form-submit-btn');
+      const submitText = submitBtn.querySelector('span');
+      const successIcon = submitBtn.querySelector('svg');
+
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // Loading State
+        submitBtn.disabled = true;
+        submitText.textContent = 'Sending...';
+        submitBtn.style.opacity = '0.8';
+        
+        setTimeout(() => {
+          // Success State Transitions
+          submitText.textContent = 'Message Sent!';
+          submitBtn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+          submitBtn.style.boxShadow = '0 4px 20px rgba(16, 185, 129, 0.4)';
+          successIcon.classList.remove('hidden');
+          
+          // Reset Form Fields
+          contactForm.reset();
+          
+          // Revert Button styling back to normal after 3.5s
+          setTimeout(() => {
+            submitBtn.disabled = false;
+            submitText.textContent = 'Send Message';
+            submitBtn.style.background = '';
+            submitBtn.style.boxShadow = '';
+            submitBtn.style.opacity = '';
+            successIcon.classList.add('hidden');
+          }, 3500);
+          
+        }, 1200);
+      });
+    });
+  </script>
+</body>
+</html>

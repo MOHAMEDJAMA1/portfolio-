@@ -1,0 +1,98 @@
+/* ==========================================================================
+   M.A. JAMA — PORTFOLIO CUSTOM STYLES
+   ========================================================================== */
+
+/* Custom fonts setup if not fetched via HTML head */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Geist:wght@400;600;700&display=swap');
+
+/* Core custom classes that supplement Tailwind CSS utility classes */
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  vertical-align: middle;
+}
+
+/* Premium Carbon Charcoal Glassmorphism */
+.glass-card {
+  background: rgba(18, 18, 18, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(140, 144, 159, 0.15);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  border-color: rgba(173, 198, 255, 0.4);
+  box-shadow: 0 0 20px rgba(173, 198, 255, 0.1);
+  transform: translateY(-4px);
+}
+
+/* Atmospheric Neon Glow filter overlay */
+.glow-overlay {
+  background: radial-gradient(circle at 50% 50%, rgba(173, 198, 255, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Neon Text Gradient */
+.text-gradient {
+  background: linear-gradient(135deg, #adc6ff 0%, #d0bcff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Sleek custom scrollbars */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #131313;
+}
+::-webkit-scrollbar-thumb {
+  background: #adc6ff;
+  border-radius: 10px;
+}
+
+/* Smooth float animation for elements in the hero workspace */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Resume PDF high-contrast printing overlays */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #resume-modal, #resume-modal * {
+    visibility: visible;
+  }
+  #resume-modal {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: white !important;
+    color: #1f2937 !important;
+  }
+  .modal-card {
+    border: none !important;
+    box-shadow: none !important;
+    background: white !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+  .modal-header, .modal-close-btn {
+    display: none !important;
+  }
+  .resume-sheet {
+    box-shadow: none !important;
+    padding: 0 !important;
+    background: white !important;
+    color: #1f2937 !important;
+  }
+}
