@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mohamed Jama — Full-Stack Software Engineer &amp; System Architect</title>
+  <meta name="description" content="Mohamed Abshir Jama — Computer Engineering graduate and Full-Stack Software Engineer with 4+ years of production experience architecting high-throughput SaaS platforms, defensive cloud security systems, and resilient enterprise applications." />
+
+  <!-- Google Fonts: Syne, Space Grotesk, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Syne', 'sans-serif'],
+            sans: ['"Space Grotesk"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            twilight: {
+              DEFAULT: '#282B4A',
+              950: '#131526',
+              900: '#191C33',
+              850: '#202441',
+              800: '#282B4A',
+              700: '#343860',
+              600: '#454B7F',
+            },
+            cyan: {
+              glow: '#38bdf8',
+              dim: '#0284c7',
+            },
+            coral: {
+              glow: '#ff3b69',
+              dim: '#e11d48',
+            },
+            accent: {
+              blue: '#3b82f6',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --bg-twilight: #282B4A;
+      --card-twilight: rgba(25, 28, 51, 0.72);
+      --card-border: rgba(165, 180, 252, 0.12);
+      --cyan-glow: #38bdf8;
+      --coral-glow: #ff3b69;
+      --blue-accent: #3b82f6;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #282B4A;
+      color: #f1f5f9;
+      font-family: 'Space Grotesk', sans-serif;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* Ambient Subtle Architectural Glows */
+    .twilight-backdrop {
+      background-color: #282B4A;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.15) 0%, transparent 60%),
+        radial-gradient(circle at 90% 40%, rgba(255, 59, 105, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 10% 80%, rgba(59, 130, 246, 0.12) 0%, transparent 50%),
+        linear-gradient(to right, rgba(165, 180, 252, 0.035) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(165, 180, 252, 0.035) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 100% 100%, 56px 56px, 56px 56px;
+    }
+
+    /* Emil Kowalski Damped Spring Kinetic Cursor */
+    #cursor-aura {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 40px;
+      height: 40px;
+      border: 1.5px solid rgba(56, 189, 248, 0.7);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 999999;
+      transform: translate(-50%, -50%);
+      transition: width 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+                  height 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+                  border-color 0.25s, background-color 0.25s, box-shadow 0.25s;
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.35);
+    }
+
+    #cursor-dot {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 6px;
+      height: 6px;
+      background-color: #ff3b69;
+      box-shadow: 0 0 12px #ff3b69;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 1000000;
+      transform: translate(-50%, -50%);
+    }
+
+    body.cursor-active #cursor-aura {
+      width: 64px;
+      height: 64px;
+      border-color: #ff3b69;
+      background: rgba(255, 59, 105, 0.1);
+      box-shadow: 0 0 35px rgba(255, 59, 105, 0.5);
+    }
+
+    /* Impeccable Exhibition Decks */
+    .exhibit-card {
+      background: var(--card-twilight);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      border: 1px solid var(--card-border);
+      border-radius: 28px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 20px 50px -15px rgba(10, 12, 28, 0.7);
+    }
+
+    .exhibit-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(700px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(56, 189, 248, 0.16), rgba(255, 59, 105, 0.08) 35%, transparent 70%);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+      z-index: 0;
+    }
+
+    .exhibit-card:hover::before {
+      opacity: 1;
+    }
+
+    .exhibit-card:hover {
+      border-color: rgba(56, 189, 248, 0.4);
+      box-shadow: 0 25px 60px -15px rgba(10, 12, 28, 0.9), 0 0 35px rgba(56, 189, 248, 0.18);
+      transform: translateY(-4px);
+    }
+
+    /* Spring Buttons */
+    .btn-spring-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: #ffffff;
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      box-shadow: 0 0 25px rgba(37, 99, 235, 0.45);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-spring-primary:hover {
+      background: linear-gradient(135deg, #1d4ed8, #2563eb);
+      box-shadow: 0 0 35px rgba(56, 189, 248, 0.7), 0 0 15px rgba(255, 59, 105, 0.3);
+      transform: translateY(-2px) scale(1.02);
+    }
+
+    .btn-spring-primary:active {
+      transform: scale(0.97);
+    }
+
+    .btn-spring-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 26px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      background: rgba(255, 255, 255, 0.06);
+      color: #f1f5f9;
+      border: 1px solid rgba(165, 180, 252, 0.2);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-spring-ghost:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: #38bdf8;
+      color: #38bdf8;
+      transform: translateY(-2px);
+    }
+
+    .btn-spring-ghost:active {
+      transform: scale(0.97);
+    }
+
+    /* Badges */
+    .badge-cyan {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 14px;
+      border-radius: 9999px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      background: rgba(56, 189, 248, 0.12);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.2);
+    }
+
+    .badge-coral {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 14px;
+      border-radius: 9999px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      background: rgba(255, 59, 105, 0.12);
+      color: #ff3b69;
+      border: 1px solid rgba(255, 59, 105, 0.35);
+      box-shadow: 0 0 12px rgba(255, 59, 105, 0.2);
+    }
+
+    /* Touch Devices & Reduced Motion */
+    @media (pointer: coarse) {
+      body { cursor: auto !important; }
+      #cursor-aura, #cursor-dot { display: none !important; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      #cursor-aura, #cursor-dot { display: none !important; }
+      body { cursor: auto !important; }
+    }
+  </style>
+</head>
+
+<body class="twilight-backdrop antialiased selection:bg-coral-glow selection:text-white">
+
+  <!-- DAMPED SPRING TACTILE CURSOR -->
+  <div id="cursor-aura" aria-hidden="true"></div>
+  <div id="cursor-dot" aria-hidden="true"></div>
+
+  <!-- ======================================================== -->
+  <!-- 1. NAVIGATION BAR                                        -->
+  <!-- ======================================================== -->
+  <header class="fixed top-6 inset-x-0 z-50 flex justify-center px-4 sm:px-6">
+    <nav class="max-w-4xl w-full flex items-center justify-between py-3 px-6 rounded-2xl bg-twilight-950/85 border border-twilight-700/50 backdrop-blur-2xl shadow-[0_20px_50px_rgba(10,12,28,0.85)]" aria-label="Main Navigation">
+      
+      <!-- Brand Logo -->
+      <a href="#hero" class="flex items-center gap-3 group focus:outline-none focus:ring-1 focus:ring-cyan-glow rounded-lg">
+        <div class="w-8 h-8 rounded-xl bg-accent-blue/20 border border-cyan-glow/40 flex items-center justify-center text-cyan-glow group-hover:border-coral-glow transition-colors font-mono font-bold text-xs shadow-[0_0_12px_rgba(56,189,248,0.3)]">
+          M
+        </div>
+        <span class="font-display font-black text-base tracking-tight text-white group-hover:text-cyan-glow transition-colors">
+          M.A. JAMA
+        </span>
+      </a>
+
+      <!-- Nav Links -->
+      <div class="hidden sm:flex items-center gap-6 font-sans text-xs uppercase tracking-wider text-slate-300 font-bold">
+        <a href="#hero" class="hover:text-cyan-glow transition-colors py-1">Overview</a>
+        <a href="#selected-works" class="hover:text-coral-glow transition-colors py-1">Projects</a>
+        <a href="#stack" class="hover:text-cyan-glow transition-colors py-1">Stack</a>
+        <a href="#experience" class="hover:text-coral-glow transition-colors py-1">Experience</a>
+      </div>
+
+      <!-- Action Button -->
+      <div class="flex items-center gap-3">
+        <a href="#contact" class="btn-spring-primary !py-2 !px-4 !text-xs">
+          <span>Connect</span>
+        </a>
+      </div>
+
+    </nav>
+  </header>
+
+  <!-- ======================================================== -->
+  <!-- EDITORIAL MONOGRAPH CANVAS                               -->
+  <!-- ======================================================== -->
+  <main class="relative z-10 pt-36 pb-32 max-w-4xl mx-auto px-6 space-y-32">
+
+    <!-- ====================================================== -->
+    <!-- 2. HERO SECTION                                        -->
+    <!-- ====================================================== -->
+    <section id="hero" class="pt-6 pb-4 space-y-8" aria-label="Hero Introduction">
+      
+      <div class="space-y-6">
+        
+        <!-- Eyebrow -->
+        <div class="flex items-center gap-3 font-mono text-xs text-coral-glow font-bold tracking-widest uppercase">
+          <span class="w-2.5 h-2.5 rounded-full bg-coral-glow animate-ping"></span>
+          <span>// FULL-STACK SOFTWARE ENGINEER &amp; SYSTEM ARCHITECT</span>
+        </div>
+
+        <!-- Display Name -->
+        <h1 class="font-display font-black text-6xl sm:text-8xl lg:text-[100px] tracking-tight text-white leading-[0.9] uppercase">
+          MOHAMED<br />
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-glow via-accent-blue to-coral-glow">
+            JAMA
+          </span>
+        </h1>
+
+        <!-- Role Subtitle -->
+        <p class="font-sans text-lg sm:text-2xl text-slate-200 leading-relaxed font-normal">
+          Computer Engineering graduate and Full-Stack Software Engineer with 4+ years of production experience architecting high-throughput SaaS platforms, defensive cloud security systems, and resilient enterprise applications. Focused on structural reliability, end-to-end type safety, and sub-second performance.
+        </p>
+
+        <!-- Primary CTAs -->
+        <div class="flex flex-wrap items-center gap-4 pt-2">
+          <a href="#selected-works" class="btn-spring-primary">
+            <span>Explore Works ↓</span>
+          </a>
+          <a href="mailto:mohamedabshir881@gmail.com" class="btn-spring-ghost">
+            <span>Get in Touch ✉</span>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Interactive Terminal Component (jama-core-runtime.ts) -->
+      <div class="exhibit-card p-6 font-mono text-xs space-y-4 border border-cyan-glow/30">
+        
+        <div class="flex items-center justify-between border-b border-twilight-700/50 pb-3">
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-coral-glow"></span>
+            <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+            <span class="w-3 h-3 rounded-full bg-cyan-glow"></span>
+            <span class="text-white text-[11px] font-bold pl-2">jama-core-runtime.ts</span>
+          </div>
+          <span class="badge-cyan !py-0.5 !px-2 !text-[9px]">RUNTIME: VALIDATED</span>
+        </div>
+
+        <pre class="overflow-x-auto text-[11px] leading-relaxed text-slate-200 font-mono py-1"><code><span class="text-cyan-glow font-bold">interface</span> <span class="text-white font-bold">EngineerProfile</span> {
+  name: <span class="text-cyan-glow">string</span>;
+  role: <span class="text-cyan-glow">string</span>;
+  experience: <span class="text-cyan-glow">string</span>;
+  degree: <span class="text-cyan-glow">string</span>;
+  currentRole: <span class="text-cyan-glow">string</span>;
+  coreStack: <span class="text-cyan-glow">string</span>[];
+  securityFocus: <span class="text-cyan-glow">string</span>[];
+  productionReady: <span class="text-coral-glow font-bold">boolean</span>;
+}
+
+<span class="text-cyan-glow font-bold">const</span> <span class="text-white font-bold">engineer</span>: <span class="text-cyan-glow">EngineerProfile</span> = {
+  name: <span class="text-slate-300">"Mohamed Abshir Jama"</span>,
+  role: <span class="text-slate-300">"Full-Stack Software Engineer"</span>,
+  experience: <span class="text-slate-300">"4+ Years Building &amp; Shipping Production Systems"</span>,
+  degree: <span class="text-slate-300">"B.S. in Computer Engineering"</span>,
+  currentRole: <span class="text-slate-300">"Software Developer @ Alnaciim Water Company"</span>,
+  coreStack: [<span class="text-cyan-glow">"Next.js 15"</span>, <span class="text-cyan-glow">"TypeScript"</span>, <span class="text-cyan-glow">"FastAPI"</span>, <span class="text-cyan-glow">"Supabase"</span>, <span class="text-cyan-glow">"PostgreSQL"</span>],
+  securityFocus: [<span class="text-coral-glow">"Cloud Telemetry"</span>, <span class="text-coral-glow">"Row-Level Security (RLS)"</span>, <span class="text-coral-glow">"RBAC"</span>, <span class="text-coral-glow">"Threat Observability"</span>],
+  productionReady: <span class="text-coral-glow font-bold">true</span>
+};
+
+<span class="text-cyan-glow font-bold">await</span> engineer.<span class="text-white font-bold">launchEnterpriseSystem</span>();</code></pre>
+
+        <div class="border-t border-twilight-700/50 pt-3 flex items-center justify-between text-[11px] text-slate-400">
+          <span class="text-cyan-glow">$ node --loader ts-node runtime.ts</span>
+          <span class="text-coral-glow font-bold">[200 OK] PIPELINE READY</span>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ====================================================== -->
+    <!-- 3. ABOUT ME SECTION                                    -->
+    <!-- ====================================================== -->
+    <section id="about" class="space-y-8" aria-labelledby="about-heading">
+      
+      <div class="space-y-3">
+        <!-- Eyebrow -->
+        <span class="font-mono text-xs uppercase tracking-widest text-cyan-glow font-bold">
+          // ENGINEERING PHILOSOPHY &amp; PROFILE
+        </span>
+        <!-- Section Title -->
+        <h2 id="about-heading" class="font-display font-black text-3xl sm:text-5xl text-white tracking-tight">
+          Architecting Systems with Structural Precision
+        </h2>
+      </div>
+
+      <div class="exhibit-card p-8 sm:p-12 space-y-6">
+        <!-- Body Text -->
+        <p class="font-sans text-base sm:text-lg text-slate-200 leading-relaxed">
+          I am a Computer Engineering graduate and Full-Stack Software Engineer with over 4 years of hands-on software development experience. My work spans the complete software lifecycle—from low-latency backend microservices and secure relational database schemas to responsive, high-performance web applications.
+        </p>
+        <p class="font-sans text-base sm:text-lg text-slate-200 leading-relaxed">
+          Over the past four years, I have engineered commercial logistics systems at Alnaciim Water Company, designed defensive telemetry tools in cloud security, and built multi-tenant SaaS platforms handling sensitive institutional data. My engineering philosophy is built around structural reliability, strict end-to-end type safety, and real business ROI: writing maintainable code that scales smoothly under real-world traffic.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-6 border-t border-twilight-700/50 text-xs font-mono">
+          <div class="p-4 rounded-xl bg-twilight-950/80 border border-twilight-700/40">
+            <div class="text-cyan-glow font-bold">01 // Structural Reliability</div>
+            <div class="text-slate-400 text-[11px] pt-1">Defensive architecture, continuous uptime, zero unhandled errors.</div>
+          </div>
+          <div class="p-4 rounded-xl bg-twilight-950/80 border border-twilight-700/40">
+            <div class="text-coral-glow font-bold">02 // End-to-End Type Safety</div>
+            <div class="text-slate-400 text-[11px] pt-1">Compile-time Zod and TypeScript contract guarantees.</div>
+          </div>
+          <div class="p-4 rounded-xl bg-twilight-950/80 border border-twilight-700/40">
+            <div class="text-emerald-400 font-bold">03 // Sub-Second Execution</div>
+            <div class="text-slate-400 text-[11px] pt-1">Async event queues, sub-15ms edge database connections.</div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ====================================================== -->
+    <!-- 4. SELECTED WORKS (PROJECTS SHOWCASE)                  -->
+    <!-- ====================================================== -->
+    <section id="selected-works" class="space-y-16" aria-labelledby="works-heading">
+      
+      <div class="space-y-3 border-b border-twilight-700/50 pb-6">
+        <!-- Eyebrow -->
+        <span class="font-mono text-xs uppercase tracking-widest text-coral-glow font-bold">
+          // PRODUCTION &amp; ARCHITECTURE
+        </span>
+        <!-- Section Title -->
+        <h2 id="works-heading" class="font-display font-black text-4xl sm:text-6xl text-white tracking-tight">
+          SELECTED WORKS
+        </h2>
+        <!-- Section Subtitle -->
+        <p class="font-sans text-slate-300 text-base leading-relaxed">
+          Interactive showcase engineered with physics-spring hover tracking, strict row-level security, and production-tested resilience.
+        </p>
+      </div>
+
+      <!-- ==================================================== -->
+      <!-- CARD 1: AASAAS ACADEMIC PLATFORM                     -->
+      <!-- ==================================================== -->
+      <article class="exhibit-card p-8 sm:p-12 space-y-8 border-l-4 border-l-cyan-glow">
+        
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-twilight-700/50 pb-4">
+          <div class="flex items-center gap-3">
+            <!-- Badge -->
+            <span class="badge-cyan">FLAGSHIP // MULTI-TENANT EDTECH</span>
+            <span class="font-mono text-xs text-slate-400">01 / PRODUCTION</span>
+          </div>
+          <!-- Tech Stack Pill -->
+          <div class="font-mono text-xs text-cyan-glow font-bold">Next.js 15 • Supabase (RLS)</div>
+        </div>
+
+        <div class="space-y-4">
+          <!-- Title -->
+          <h3 class="font-display font-black text-3xl sm:text-5xl text-white tracking-tight">
+            Aasaas Academic Platform
+          </h3>
+          <!-- Description -->
+          <p class="font-sans text-slate-200 text-base sm:text-lg leading-relaxed">
+            Enterprise-grade academic management ecosystem featuring strict Supabase Row-Level Security, multi-tenant RBAC, and real-time administrative workflows built with Next.js 15.
+          </p>
+        </div>
+
+        <!-- Technical Highlights -->
+        <div class="p-6 rounded-2xl bg-twilight-950/90 border border-twilight-700/50 font-mono text-xs space-y-3">
+          <div class="text-cyan-glow font-bold uppercase text-[11px] border-b border-twilight-700/40 pb-2">
+            TECHNICAL HIGHLIGHTS
+          </div>
+          <ul class="space-y-2.5 text-slate-200 text-[12px]">
+            <li class="flex items-start gap-2.5">
+              <span class="text-cyan-glow font-bold">▸</span>
+              <span>Built granular Role-Based Access Control (RBAC) governing discrete permission boundaries for administrators, faculty, and students.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="text-cyan-glow font-bold">▸</span>
+              <span>Implemented real-time grade calculations and attendance pipelines utilizing PostgreSQL transactions for absolute data consistency.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Interactive RBAC Simulation Deck -->
+        <div class="p-6 rounded-2xl bg-twilight-950/95 border border-cyan-glow/40 shadow-[0_0_25px_rgba(56,189,248,0.15)] space-y-4 font-mono text-xs">
+          <div class="flex items-center justify-between border-b border-twilight-700/40 pb-3">
+            <span class="text-white font-bold uppercase text-[11px]">Interactive Tenant RBAC Simulator</span>
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          </div>
+
+          <div class="grid grid-cols-3 gap-2">
+            <button id="rbac-admin" class="py-2 text-center rounded-lg border border-cyan-glow bg-cyan-glow/20 text-cyan-glow font-bold transition-all">Admin</button>
+            <button id="rbac-faculty" class="py-2 text-center rounded-lg border border-twilight-700/50 bg-twilight-900 text-slate-300 hover:text-white transition-all">Faculty</button>
+            <button id="rbac-student" class="py-2 text-center rounded-lg border border-twilight-700/50 bg-twilight-900 text-slate-300 hover:text-white transition-all">Student</button>
+          </div>
+
+          <div class="p-4 rounded-xl bg-twilight-900 border border-twilight-700/40 space-y-2 text-[11px]">
+            <div class="flex items-center justify-between text-slate-400">
+              <span>Active Scope:</span>
+              <span id="rbac-scope" class="text-cyan-glow font-bold">TENANT_GLOBAL_ADMIN</span>
+            </div>
+            <div class="flex items-center justify-between text-slate-400">
+              <span>Postgres Policy:</span>
+              <span id="rbac-policy" class="text-emerald-400 font-bold">auth.jwt() -&gt; role == 'admin'</span>
+            </div>
+            <div class="pt-2 border-t border-twilight-700/30 text-slate-300 text-[11px]">
+              <span id="rbac-desc">Full permissions: Manage institutions, enrollments, billing, faculty records.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-twilight-700/50">
+          <!-- Tech Stack -->
+          <div class="font-mono text-xs text-slate-400">
+            Next.js 15 • TypeScript • Supabase (RLS) • PostgreSQL • Tailwind CSS
+          </div>
+          <!-- Action Link -->
+          <a href="https://github.com/MOHAMEDJAMA1/aasaas-academic-platform" target="_blank" rel="noopener noreferrer" class="btn-spring-primary">
+            <span>View on GitHub →</span>
+          </a>
+        </div>
+
+      </article>
+
+      <!-- ==================================================== -->
+      <!-- CARD 2: CLOUD SECURITY DASHBOARD                     -->
+      <!-- ==================================================== -->
+      <article class="exhibit-card p-8 sm:p-12 space-y-8 border-l-4 border-l-coral-glow">
+        
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-coral-glow/30 pb-4">
+          <div class="flex items-center gap-3">
+            <!-- Badge -->
+            <span class="badge-coral">SYSTEMS // DEFENSIVE TELEMETRY</span>
+            <span class="font-mono text-xs text-slate-400">02 / SYSTEMS</span>
+          </div>
+          <div class="font-mono text-xs text-coral-glow font-bold flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-coral-glow animate-ping"></span>
+            <span>Python • FastAPI • Docker</span>
+          </div>
+        </div>
+
+        <div class="space-y-4">
+          <!-- Title -->
+          <h3 class="font-display font-black text-3xl sm:text-5xl text-white tracking-tight">
+            Cloud Security Dashboard
+          </h3>
+          <!-- Description -->
+          <p class="font-sans text-slate-200 text-base sm:text-lg leading-relaxed">
+            Proactive cloud security observability interface. Ingests and parses system metrics with sub-second latency, providing real-time threat detection and analytics.
+          </p>
+        </div>
+
+        <!-- Technical Highlights -->
+        <div class="p-6 rounded-2xl bg-twilight-950/90 border border-twilight-700/50 font-mono text-xs space-y-3">
+          <div class="text-coral-glow font-bold uppercase text-[11px] border-b border-twilight-700/40 pb-2">
+            TECHNICAL HIGHLIGHTS
+          </div>
+          <ul class="space-y-2.5 text-slate-200 text-[12px]">
+            <li class="flex items-start gap-2.5">
+              <span class="text-coral-glow font-bold">▸</span>
+              <span>Developed asynchronous Python and FastAPI endpoints to ingest and parse streaming log vectors with minimal latency.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="text-coral-glow font-bold">▸</span>
+              <span>Containerized the ingestion engine using Docker to ensure reproducible and isolated production deployments.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Streaming Log Terminal -->
+        <div class="p-5 rounded-2xl bg-twilight-950/95 border border-coral-glow/30 font-mono text-xs space-y-3">
+          <div class="flex items-center justify-between text-coral-glow font-bold text-[11px] uppercase border-b border-coral-glow/20 pb-2">
+            <span>Live Streaming Telemetry Log</span>
+            <span class="text-emerald-400">CLUSTER: ACTIVE</span>
+          </div>
+          <div class="space-y-2 text-[11px]">
+            <div class="flex items-center justify-between p-2 rounded bg-twilight-900 border border-twilight-700/40">
+              <span class="text-cyan-glow">&gt; Ingestion Rate</span>
+              <span class="text-emerald-400 font-bold">14,290 requests/sec</span>
+            </div>
+            <div class="flex items-center justify-between p-2 rounded bg-twilight-900 border border-twilight-700/40">
+              <span class="text-slate-300">&gt; Average Pipeline Latency</span>
+              <span class="text-cyan-glow font-bold">8.4ms (Async FastAPI worker)</span>
+            </div>
+            <div class="flex items-center justify-between p-2 rounded bg-twilight-900 border border-twilight-700/40">
+              <span class="text-coral-glow">&gt; Unresolved Threat Anomaly</span>
+              <span class="text-slate-400 font-bold">0 Detected</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-twilight-700/50">
+          <!-- Tech Stack -->
+          <div class="font-mono text-xs text-slate-400">
+            Python • FastAPI • React • Docker • Next.js
+          </div>
+          <!-- Action Link -->
+          <a href="https://github.com/MOHAMEDJAMA1/cloud-security" target="_blank" rel="noopener noreferrer" class="btn-spring-primary">
+            <span>View on GitHub →</span>
+          </a>
+        </div>
+
+      </article>
+
+      <!-- ==================================================== -->
+      <!-- CARD 3: MEDINATION                                   -->
+      <!-- ==================================================== -->
+      <article class="exhibit-card p-8 sm:p-12 space-y-8 border-l-4 border-l-cyan-glow">
+        
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-cyan-glow/30 pb-4">
+          <div class="flex items-center gap-3">
+            <!-- Badge -->
+            <span class="badge-cyan">HEALTHCARE // AUDIT &amp; CLINICAL WORKFLOW</span>
+            <span class="font-mono text-xs text-slate-400">03 / CLINICAL</span>
+          </div>
+          <div class="font-mono text-xs text-cyan-glow font-bold">Next.js • TypeScript • PostgreSQL</div>
+        </div>
+
+        <div class="space-y-4">
+          <!-- Title -->
+          <h3 class="font-display font-black text-3xl sm:text-5xl text-white tracking-tight">
+            Medination
+          </h3>
+          <!-- Description -->
+          <p class="font-sans text-slate-200 text-base sm:text-lg leading-relaxed">
+            Role-governed healthcare management platform designed for strict patient data isolation, electronic health record compliance, and immutable audit logs.
+          </p>
+        </div>
+
+        <!-- Real Clinical Interface Preview -->
+        <div class="relative rounded-2xl overflow-hidden border border-cyan-glow/40 shadow-[0_0_35px_rgba(56,189,248,0.2)] group">
+          <img src="assets/medination.jpg" alt="Medination Healthcare Interface Preview" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-twilight-950/90 via-transparent to-transparent flex items-end p-4">
+            <span class="font-mono text-[11px] text-cyan-glow font-bold bg-twilight-950/90 px-3 py-1 rounded-lg border border-cyan-glow/30">
+              HIPAA-Compliant Schema &amp; Immutable Audit Trail
+            </span>
+          </div>
+        </div>
+
+        <!-- Technical Highlights -->
+        <div class="p-6 rounded-2xl bg-twilight-950/90 border border-twilight-700/50 font-mono text-xs space-y-3">
+          <div class="text-cyan-glow font-bold uppercase text-[11px] border-b border-twilight-700/40 pb-2">
+            TECHNICAL HIGHLIGHTS
+          </div>
+          <ul class="space-y-2.5 text-slate-200 text-[12px]">
+            <li class="flex items-start gap-2.5">
+              <span class="text-cyan-glow font-bold">▸</span>
+              <span>Enforced strict end-to-end TypeScript schema validation using Zod to prevent malformed clinical entries.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="text-cyan-glow font-bold">▸</span>
+              <span>Engineered an immutable database audit log tracking all record reads, modifications, and permission escalations.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-twilight-700/50">
+          <!-- Tech Stack -->
+          <div class="font-mono text-xs text-slate-400">
+            Next.js • TypeScript • PostgreSQL • Tailwind CSS
+          </div>
+          <!-- Action Link -->
+          <a href="https://github.com/MOHAMEDJAMA1/medination" target="_blank" rel="noopener noreferrer" class="btn-spring-primary">
+            <span>View on GitHub →</span>
+          </a>
+        </div>
+
+      </article>
+
+      <!-- ==================================================== -->
+      <!-- CARD 4: SOMEDU                                       -->
+      <!-- ==================================================== -->
+      <article class="exhibit-card p-8 sm:p-12 space-y-8 border-l-4 border-l-coral-glow">
+        
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-coral-glow/30 pb-4">
+          <div class="flex items-center gap-3">
+            <!-- Badge -->
+            <span class="badge-coral">SAAS // INSTITUTIONAL OPERATIONS</span>
+            <span class="font-mono text-xs text-slate-400">04 / OPERATIONS</span>
+          </div>
+          <div class="font-mono text-xs text-coral-glow font-bold">Relational Schemas • Supabase</div>
+        </div>
+
+        <div class="space-y-4">
+          <!-- Title -->
+          <h3 class="font-display font-black text-3xl sm:text-5xl text-white tracking-tight">
+            SOMEDU
+          </h3>
+          <!-- Description -->
+          <p class="font-sans text-slate-200 text-base sm:text-lg leading-relaxed">
+            Comprehensive school operations platform automating faculty scheduling, attendance tracking, and cohort grade analytics through normalized relational models.
+          </p>
+        </div>
+
+        <!-- Technical Highlights -->
+        <div class="p-6 rounded-2xl bg-twilight-950/90 border border-twilight-700/50 font-mono text-xs space-y-3">
+          <div class="text-coral-glow font-bold uppercase text-[11px] border-b border-twilight-700/40 pb-2">
+            TECHNICAL HIGHLIGHTS
+          </div>
+          <ul class="space-y-2.5 text-slate-200 text-[12px]">
+            <li class="flex items-start gap-2.5">
+              <span class="text-coral-glow font-bold">▸</span>
+              <span>Automated student enrollment pipelines, class allocations, and teacher-course assignments through relational schemas.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="text-coral-glow font-bold">▸</span>
+              <span>Delivered an accessible administrative dashboard optimized for high-volume data entry and record exports.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Relational Schema Blueprint Visual -->
+        <div class="p-6 rounded-2xl bg-twilight-950/95 border border-coral-glow/40 shadow-[0_0_25px_rgba(255,59,105,0.15)] font-mono text-xs space-y-3">
+          <div class="flex items-center justify-between text-coral-glow font-bold text-[11px] uppercase border-b border-twilight-700/40 pb-2">
+            <span>Normalized Database Graph</span>
+            <span>PostgreSQL 3NF</span>
+          </div>
+
+          <div class="space-y-2 text-[11px]">
+            <div class="p-2.5 rounded-lg bg-twilight-900 border border-twilight-700/50 flex items-center justify-between">
+              <div class="font-bold text-white">students</div>
+              <div class="text-[10px] text-cyan-glow">PK: student_id</div>
+            </div>
+            
+            <div class="text-center text-slate-500 text-[10px]">▼ 1:N Foreign Key (enrollment_id)</div>
+
+            <div class="p-2.5 rounded-lg bg-twilight-900 border border-twilight-700/50 flex items-center justify-between">
+              <div class="font-bold text-white">course_enrollments</div>
+              <div class="text-[10px] text-coral-glow">FK: course_id, student_id</div>
+            </div>
+
+            <div class="text-center text-slate-500 text-[10px]">▼ 1:N Foreign Key (grade_id)</div>
+
+            <div class="p-2.5 rounded-lg bg-twilight-900 border border-twilight-700/50 flex items-center justify-between">
+              <div class="font-bold text-white">cohort_gradebook</div>
+              <div class="text-[10px] text-emerald-400">INDEX: term_id, gpa_calc</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-twilight-700/50">
+          <!-- Tech Stack -->
+          <div class="font-mono text-xs text-slate-400">
+            Next.js • TypeScript • PostgreSQL • Supabase
+          </div>
+          <!-- Action Link -->
+          <a href="https://github.com/MOHAMEDJAMA1/SOMEDU" target="_blank" rel="noopener noreferrer" class="btn-spring-primary">
+            <span>View on GitHub →</span>
+          </a>
+        </div>
+
+      </article>
+
+    </section>
+
+    <!-- ====================================================== -->
+    <!-- 5. PROFESSIONAL EXPERIENCE & CREDENTIALS               -->
+    <!-- ====================================================== -->
+    <section id="experience" class="space-y-12" aria-labelledby="experience-heading">
+      
+      <div class="space-y-3 border-b border-twilight-700/50 pb-6">
+        <!-- Eyebrow -->
+        <span class="font-mono text-xs uppercase tracking-widest text-cyan-glow font-bold">
+          // CAREER &amp; CREDENTIALS
+        </span>
+        <!-- Section Title -->
+        <h2 id="experience-heading" class="font-display font-black text-4xl sm:text-5xl text-white tracking-tight">
+          Experience &amp; Education
+        </h2>
+      </div>
+
+      <div class="space-y-8">
+        
+        <!-- Role 1: Software Developer — Alnaciim Water Company -->
+        <article class="exhibit-card p-8 sm:p-10 space-y-4 border-l-4 border-l-cyan-glow">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-twilight-700/50 pb-4">
+            <div>
+              <h3 class="font-display font-bold text-2xl text-white">Software Developer — Alnaciim Water Company</h3>
+              <!-- Scope -->
+              <p class="font-mono text-xs text-cyan-glow pt-1">Internal Enterprise Systems &amp; Supply Chain Engineering</p>
+            </div>
+            <!-- Period -->
+            <span class="badge-cyan w-fit">Present</span>
+          </div>
+          <!-- Key Achievements -->
+          <div class="space-y-2 text-slate-300 font-sans text-sm sm:text-base">
+            <div class="font-mono text-xs text-slate-400 uppercase tracking-wider">Key Achievements:</div>
+            <ul class="space-y-2 list-disc list-inside text-slate-300">
+              <li>Engineered scalable internal operational tools, automated commercial order routing, and rebuilt legacy operational databases to streamline commercial distribution across enterprise teams.</li>
+              <li>Modernized data pipelines and eliminated manual reconciliation tasks to keep enterprise workflows running reliably without downtime.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Role 2: Cloud Systems & Observability -->
+        <article class="exhibit-card p-8 sm:p-10 space-y-4 border-l-4 border-l-coral-glow">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-twilight-700/50 pb-4">
+            <div>
+              <h3 class="font-display font-bold text-2xl text-white">Cloud Systems &amp; Observability</h3>
+              <!-- Scope -->
+              <p class="font-mono text-xs text-coral-glow pt-1">Defensive Infrastructure &amp; Log Telemetry</p>
+            </div>
+            <!-- Period -->
+            <span class="badge-coral w-fit">Independent Architecture</span>
+          </div>
+          <!-- Key Achievements -->
+          <div class="space-y-2 text-slate-300 font-sans text-sm sm:text-base">
+            <div class="font-mono text-xs text-slate-400 uppercase tracking-wider">Key Achievements:</div>
+            <ul class="space-y-2 list-disc list-inside text-slate-300">
+              <li>Architected real-time log ingestion pipelines and threat-monitoring dashboards utilizing Python, FastAPI, and Docker for proactive event observability.</li>
+              <li>Built low-latency event parsing engines to visualize anomalous access spikes and infrastructure health.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Credential: B.S. in Computer Engineering -->
+        <article class="exhibit-card p-8 sm:p-10 space-y-4 border-l-4 border-l-cyan-glow">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-twilight-700/50 pb-4">
+            <div>
+              <h3 class="font-display font-bold text-2xl text-white">B.S. in Computer Engineering</h3>
+              <!-- Discipline -->
+              <p class="font-mono text-xs text-cyan-glow pt-1">Computer Engineering</p>
+            </div>
+            <span class="badge-cyan w-fit">Academic Degree</span>
+          </div>
+          <!-- Foundations -->
+          <div class="space-y-2 text-slate-300 font-sans text-sm sm:text-base">
+            <div class="font-mono text-xs text-slate-400 uppercase tracking-wider">Foundations:</div>
+            <ul class="space-y-2 list-disc list-inside text-slate-300">
+              <li>Rigorous academic foundations in distributed systems, networking protocols, database internals, and defensive application architecture.</li>
+              <li>Applied core engineering rigor directly into production software design, prioritizing predictable state management, defensive programming, and resource efficiency.</li>
+            </ul>
+          </div>
+        </article>
+
+      </div>
+
+    </section>
+
+    <!-- ====================================================== -->
+    <!-- 6. TECHNICAL CAPABILITIES GRID                         -->
+    <!-- ====================================================== -->
+    <section id="stack" class="space-y-10" aria-labelledby="capabilities-heading">
+      
+      <div class="space-y-3 border-b border-twilight-700/50 pb-6">
+        <span class="font-mono text-xs uppercase tracking-widest text-cyan-glow font-bold">
+          // ARSENAL &amp; TOOLS
+        </span>
+        <h2 id="capabilities-heading" class="font-display font-black text-4xl sm:text-5xl text-white tracking-tight">
+          Technical Capabilities Grid
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- Frontend Engineering -->
+        <div class="exhibit-card p-6 space-y-3">
+          <div class="flex items-center gap-2 text-cyan-glow font-mono text-xs uppercase font-bold">
+            <i data-lucide="layout" class="w-4 h-4"></i>
+            <span>Frontend Engineering</span>
+          </div>
+          <p class="font-sans text-sm text-slate-300 leading-relaxed">
+            Next.js 15, React, TypeScript, JavaScript, Tailwind CSS, HTML5, CSS3
+          </p>
+        </div>
+
+        <!-- Backend & Microservices -->
+        <div class="exhibit-card p-6 space-y-3">
+          <div class="flex items-center gap-2 text-coral-glow font-mono text-xs uppercase font-bold">
+            <i data-lucide="server" class="w-4 h-4"></i>
+            <span>Backend &amp; Microservices</span>
+          </div>
+          <p class="font-sans text-sm text-slate-300 leading-relaxed">
+            FastAPI, Python, Node.js, Express, RESTful APIs
+          </p>
+        </div>
+
+        <!-- Databases, Auth & Security -->
+        <div class="exhibit-card p-6 space-y-3">
+          <div class="flex items-center gap-2 text-cyan-glow font-mono text-xs uppercase font-bold">
+            <i data-lucide="database" class="w-4 h-4"></i>
+            <span>Databases, Auth &amp; Security</span>
+          </div>
+          <p class="font-sans text-sm text-slate-300 leading-relaxed">
+            PostgreSQL, Supabase (RLS), MySQL, Row-Level Security, Role-Based Access Control
+          </p>
+        </div>
+
+        <!-- DevOps, Cloud & Tooling -->
+        <div class="exhibit-card p-6 space-y-3">
+          <div class="flex items-center gap-2 text-coral-glow font-mono text-xs uppercase font-bold">
+            <i data-lucide="cpu" class="w-4 h-4"></i>
+            <span>DevOps, Cloud &amp; Tooling</span>
+          </div>
+          <p class="font-sans text-sm text-slate-300 leading-relaxed">
+            Docker, Git, GitHub Actions, Vercel, Netlify
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ====================================================== -->
+    <!-- 7. CONTACT & FOOTER SECTION                            -->
+    <!-- ====================================================== -->
+    <footer id="contact" class="exhibit-card p-10 sm:p-16 text-center space-y-10" aria-label="Contact Section">
+      
+      <div class="max-w-xl mx-auto space-y-4">
+        <!-- Eyebrow -->
+        <span class="font-mono text-xs uppercase tracking-widest text-coral-glow block font-bold">
+          // INITIATE COLLABORATION
+        </span>
+        <!-- Headline -->
+        <h2 class="font-display font-black text-4xl sm:text-6xl text-white tracking-tight">
+          Let’s Build Something Exceptional
+        </h2>
+        <!-- Sub-text -->
+        <p class="font-sans text-slate-300 text-base leading-relaxed">
+          Open for high-impact full-stack software engineering roles, technical architecture advisory, and enterprise software consulting contracts.
+        </p>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <!-- Direct Email CTA -->
+        <a href="mailto:mohamedabshir881@gmail.com" class="btn-spring-primary !py-3.5 !px-8 !text-sm">
+          <i data-lucide="mail" class="w-4 h-4"></i>
+          <span>mohamedabshir881@gmail.com</span>
+        </a>
+
+        <!-- One-click copy functionality -->
+        <button id="copy-email-btn" aria-label="Copy Email Address" class="btn-spring-ghost !py-3.5 !px-6 !text-xs font-mono">
+          <i data-lucide="copy" class="w-4 h-4"></i>
+          <span id="copy-email-label">Copy Address</span>
+        </button>
+      </div>
+
+      <!-- Social Links -->
+      <div class="flex flex-wrap items-center justify-center gap-4 pt-4 border-t border-twilight-700/50">
+        <a href="https://github.com/MOHAMEDJAMA1" target="_blank" rel="noopener noreferrer" class="btn-spring-ghost !py-2.5 !px-5 !text-xs font-mono">
+          <i data-lucide="github" class="w-4 h-4 text-cyan-glow"></i>
+          <span>GitHub</span>
+        </a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="btn-spring-ghost !py-2.5 !px-5 !text-xs font-mono">
+          <i data-lucide="linkedin" class="w-4 h-4 text-coral-glow"></i>
+          <span>LinkedIn</span>
+        </a>
+        <a href="https://mohamedjama.vercel.app" target="_blank" rel="noopener noreferrer" class="btn-spring-ghost !py-2.5 !px-5 !text-xs font-mono">
+          <i data-lucide="external-link" class="w-4 h-4 text-cyan-glow"></i>
+          <span>Portfolio</span>
+        </a>
+      </div>
+
+      <!-- Status Tag -->
+      <div class="flex flex-col sm:flex-row items-center justify-between text-xs font-mono text-slate-400 gap-4 pt-6 border-t border-twilight-700/40">
+        <div>© 2026 Mohamed Abshir Jama. All rights reserved.</div>
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-coral-glow shadow-[0_0_8px_#ff3b69]"></span>
+          <span class="text-slate-300 font-bold">SYSTEMS DEPLOYED</span>
+        </div>
+      </div>
+
+    </footer>
+
+  </main>
+
+  <!-- ======================================================== -->
+  <!-- SCRIPTS & INTERACTION ENGINE                            -->
+  <!-- ======================================================== -->
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // 1. Emil Kowalski Damped Spring Kinetic Cursor
+    const aura = document.getElementById('cursor-aura');
+    const dot = document.getElementById('cursor-dot');
+    let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+    let auraPos = { x: mouse.x, y: mouse.y };
+
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+      if (dot) {
+        dot.style.left = `${e.clientX}px`;
+        dot.style.top = `${e.clientY}px`;
+      }
+    });
+
+    document.querySelectorAll('a, button, .exhibit-card').forEach(el => {
+      el.addEventListener('mouseenter', () => document.body.classList.add('cursor-active'));
+      el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-active'));
+    });
+
+    function loopCursor() {
+      if (aura) {
+        auraPos.x += (mouse.x - auraPos.x) * 0.18;
+        auraPos.y += (mouse.y - auraPos.y) * 0.18;
+        aura.style.left = `${auraPos.x}px`;
+        aura.style.top = `${auraPos.y}px`;
+      }
+      requestAnimationFrame(loopCursor);
+    }
+    loopCursor();
+
+    // 2. Dynamic Radial Spotlight Tracking on Every Card
+    document.querySelectorAll('.exhibit-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+        card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+      });
+    });
+
+    // 3. Aasaas Interactive RBAC Role Selector
+    const rbacAdmin = document.getElementById('rbac-admin');
+    const rbacFaculty = document.getElementById('rbac-faculty');
+    const rbacStudent = document.getElementById('rbac-student');
+    const rbacScope = document.getElementById('rbac-scope');
+    const rbacPolicy = document.getElementById('rbac-policy');
+    const rbacDesc = document.getElementById('rbac-desc');
+
+    const rbacRoles = {
+      admin: {
+        scope: 'TENANT_GLOBAL_ADMIN',
+        policy: "auth.jwt() -> role == 'admin'",
+        desc: 'Full permissions: Manage institutions, enrollments, billing, faculty records.'
+      },
+      faculty: {
+        scope: 'FACULTY_DEPARTMENT_SCOPE',
+        policy: "auth.uid() == faculty_id AND department == tenant_dept",
+        desc: 'Scoped permissions: Submit course grades, mark daily attendance, view student rosters.'
+      },
+      student: {
+        scope: 'STUDENT_PORTAL_SCOPE',
+        policy: "auth.uid() == student_id (Read-Only Transcripts)",
+        desc: 'Strict isolation: View enrolled courses, personal grade transcript, fee payment history.'
+      }
+    };
+
+    function setRbacRole(role, activeBtn) {
+      [rbacAdmin, rbacFaculty, rbacStudent].forEach(b => {
+        b.className = 'py-2 text-center rounded-lg border border-twilight-700/50 bg-twilight-900 text-slate-300 hover:text-white transition-all';
+      });
+      activeBtn.className = 'py-2 text-center rounded-lg border border-cyan-glow bg-cyan-glow/20 text-cyan-glow font-bold transition-all';
+      if (rbacScope && rbacPolicy && rbacDesc && rbacRoles[role]) {
+        rbacScope.textContent = rbacRoles[role].scope;
+        rbacPolicy.textContent = rbacRoles[role].policy;
+        rbacDesc.textContent = rbacRoles[role].desc;
+      }
+    }
+
+    if (rbacAdmin) rbacAdmin.addEventListener('click', () => setRbacRole('admin', rbacAdmin));
+    if (rbacFaculty) rbacFaculty.addEventListener('click', () => setRbacRole('faculty', rbacFaculty));
+    if (rbacStudent) rbacStudent.addEventListener('click', () => setRbacRole('student', rbacStudent));
+
+    // 4. One-Click Copy Email Action
+    const copyBtn = document.getElementById('copy-email-btn');
+    const copyLabel = document.getElementById('copy-email-label');
+
+    if (copyBtn) {
+      copyBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText('mohamedabshir881@gmail.com').then(() => {
+          if (copyLabel) copyLabel.textContent = 'COPIED!';
+          setTimeout(() => {
+            if (copyLabel) copyLabel.textContent = 'Copy Address';
+          }, 2400);
+        });
+      });
+    }
+  </script>
+</body>
+</html>
