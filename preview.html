@@ -549,13 +549,13 @@
       }
     }
 
-    /* Hero Section with Human Code Matrix */
+    /* Hero Section with Clean Minimalist Architectural Studio */
     #home {
       position: relative;
       isolation: isolate;
       overflow: hidden;
       border-radius: 0 0 2rem 2rem;
-      background: var(--hero-to);
+      background: #080a0f;
       color: #ffffff;
     }
     .liquid-container {
@@ -572,7 +572,7 @@
       object-fit: cover;
       object-position: center;
       pointer-events: none;
-      filter: brightness(0.85) contrast(1.1);
+      filter: brightness(0.6) contrast(1.1);
     }
     .liquid-canvas {
       position: absolute;
@@ -586,8 +586,8 @@
       inset: 0;
       z-index: 1;
       pointer-events: none;
-      background: radial-gradient(circle at 60% 40%, rgba(12, 14, 20, 0.15) 0%, rgba(12, 14, 20, 0.75) 60%, rgba(12, 14, 20, 0.95) 100%),
-                  linear-gradient(to bottom, rgba(12, 14, 20, 0.4) 0%, transparent 40%, rgba(12, 14, 20, 0.85) 100%);
+      background: radial-gradient(circle at 65% 35%, rgba(8, 10, 15, 0.35) 0%, rgba(8, 10, 15, 0.75) 55%, rgba(8, 10, 15, 0.97) 100%),
+                  linear-gradient(to bottom, rgba(8, 10, 15, 0.5) 0%, transparent 40%, rgba(8, 10, 15, 0.95) 100%);
     }
     .hero-watermark {
       pointer-events: none;
@@ -660,6 +660,7 @@
       line-height: 0.95;
       letter-spacing: -0.03em;
       color: #ffffff;
+      text-shadow: 0 4px 30px rgba(0, 0, 0, 0.7);
     }
     @media (min-width: 640px) {
       .hero-title {
@@ -674,8 +675,9 @@
     .hero-subtitle {
       max-width: 38ch;
       font-size: 1rem;
-      color: rgba(255, 255, 255, 0.85);
+      color: rgba(255, 255, 255, 0.9);
       line-height: 1.6;
+      text-shadow: 0 2px 16px rgba(0, 0, 0, 0.8);
     }
     @media (min-width: 640px) {
       .hero-subtitle {
@@ -2183,19 +2185,19 @@
   <!-- ======================================================== -->
   <main id="main">
 
-    <!-- 1) HERO SECTION (#home) with HUMAN CODE MATRIX -->
+    <!-- 1) HERO SECTION (#home) with CLEAN ARCHITECTURAL STUDIO -->
     <section id="home" aria-label="Engineering Profile Introduction">
       <!-- Full-bleed Liquid Reveal Background -->
       <div class="liquid-container" id="liquid-wrap">
-        <!-- Always-visible base image: Human composed of code streams -->
+        <!-- Always-visible base image: Clean architectural studio -->
         <img 
-          src="assets/human_code_hero.jpg" 
-          alt="Human silhouette and profile composed entirely of glowing code streams and circuitry" 
+          src="assets/studio_hero_bg.jpg" 
+          alt="Minimalist architectural dark studio background with smooth concrete walls and atmospheric lighting" 
           class="liquid-base-img" 
           fetchpriority="high"
           decoding="async"
         />
-        <!-- Cursor brush canvas: Paints electric cyan cybernetic human code matrix -->
+        <!-- Cursor brush canvas: Paints ambient cyan studio reveal on pointer trail -->
         <canvas class="liquid-canvas" id="liquid-canvas" aria-hidden="true"></canvas>
       </div>
 
@@ -3158,9 +3160,9 @@
       const decay = 0.016;
       let dpr = Math.min(window.devicePixelRatio || 1, 2);
 
-      // Load reveal image: Electric cyan cybernetic human code matrix
+      // Load reveal image: Ambient cyan architectural lighting
       const revealImg = new Image();
-      revealImg.src = 'assets/human_code_reveal.jpg';
+      revealImg.src = 'assets/studio_hero_reveal.jpg';
 
       let coverCanvas = document.createElement('canvas');
       let coverCtx = coverCanvas.getContext('2d');
