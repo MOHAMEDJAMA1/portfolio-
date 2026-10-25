@@ -2168,6 +2168,55 @@
       </div>
     </div>
   </div>
+  <script>
+    (function() {
+      const loader = document.getElementById('page-loader');
+      const fill = document.getElementById('loader-fill');
+      const counter = document.getElementById('loader-counter');
+      if (!loader) return;
+
+      const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReduced) {
+        loader.style.display = 'none';
+        return;
+      }
+
+      let startTime = null;
+      const DURATION = 900;
+
+      function step(now) {
+        if (!startTime) startTime = now;
+        const elapsed = now - startTime;
+        const progress = Math.min(1, elapsed / DURATION);
+        const eased = progress < 0.5 ? 4 * progress * progress * progress : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+        const pct = Math.round(eased * 100);
+
+        if (fill) fill.style.width = pct + '%';
+        if (counter) counter.textContent = String(pct).padStart(3, '0');
+
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        } else {
+          setTimeout(dismiss, 120);
+        }
+      }
+      requestAnimationFrame(step);
+
+      let dismissed = false;
+      function dismiss() {
+        if (dismissed) return;
+        dismissed = true;
+        loader.classList.add('exit');
+        setTimeout(() => {
+          try { loader.remove(); } catch(e) {}
+          window.dispatchEvent(new CustomEvent('page-loader-done'));
+        }, 650);
+      }
+
+      // Hard safety failsafe: will dismiss within 1.5s regardless of network or script state
+      setTimeout(dismiss, 1500);
+    })();
+  </script>
 
   <!-- ======================================================== -->
   <!-- HEADER                                                   -->
@@ -3085,6 +3134,8 @@
     /* ========================================================
        1. Adaptive Grid Scale-Up (Base 1920)
        ======================================================== */
+    const isReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     function applyAdaptiveGrid() {
       const FONT_BASE = 16, baseWidth = 1920, coef = 0.6666;
       const w = window.innerWidth;
@@ -3103,22 +3154,28 @@
        2. Lenis Smooth Scrolling & Scroll Lock Model
        ======================================================== */
     window.scrollTo(0, 0);
-    const lenis = new Lenis({
-      smoothWheel: true,
-      duration: 1.2
-    });
-
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
+    let lenis = null;
+    try {
+      if (typeof Lenis !== 'undefined') {
+        lenis = new Lenis({
+          smoothWheel: true,
+          duration: 1.2
+        });
+        function raf(time) {
+          if (lenis) lenis.raf(time);
+          requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+      }
+    } catch (err) {
+      console.info('Lenis not available, using native scroll', err);
     }
-    requestAnimationFrame(raf);
 
     let scrollLocked = false;
     function stopScroll() {
       if (scrollLocked) return;
       scrollLocked = true;
-      lenis.stop();
+      if (lenis) lenis.stop();
       document.documentElement.style.position = 'relative';
       document.documentElement.style.overflow = 'hidden';
       document.documentElement.style.height = '100%';
@@ -3127,7 +3184,7 @@
     function startScroll() {
       if (!scrollLocked) return;
       scrollLocked = false;
-      lenis.start();
+      if (lenis) lenis.start();
       document.documentElement.style.removeProperty('position');
       document.documentElement.style.removeProperty('overflow');
       document.documentElement.style.removeProperty('height');
@@ -3406,61 +3463,13 @@
     `).forEach(el => revealObserver.observe(el));
 
     /* ========================================================
-       8. Page Loader & Above-the-Fold Reveal Sequence
+       8. Page Loader Dismissal & Above-the-Fold Reveal Sequence
        ======================================================== */
-    const loader = document.getElementById('page-loader');
-    const loaderFill = document.getElementById('loader-fill');
-    const loaderCounter = document.getElementById('loader-counter');
-
-    stopScroll();
-
-    let ready = false;
-    const FILL_MS = 1300;
-    const startTime = performance.now();
-
-    function easeInOutCubic(t) {
-      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-    }
-
-    function animateLoader(time) {
-      if (isReducedMotion) {
-        finishLoader();
-        return;
-      }
-
-      const elapsed = time - startTime;
-      const t = Math.min(1, elapsed / FILL_MS);
-      const eased = easeInOutCubic(t);
-      const progress = Math.round(eased * 100);
-
-      if (loaderFill) loaderFill.style.width = progress + '%';
-      if (loaderCounter) loaderCounter.textContent = String(progress).padStart(3, '0');
-
-      if (t < 1) {
-        requestAnimationFrame(animateLoader);
-      } else {
-        setTimeout(finishLoader, 150);
-      }
-    }
-    requestAnimationFrame(animateLoader);
-
-    function finishLoader() {
-      if (loader) {
-        loader.classList.add('exit');
-        setTimeout(() => {
-          loader.remove();
-          ready = true;
-          startScroll();
-          triggerHeroReveals();
-        }, 700);
-      } else {
-        ready = true;
-        startScroll();
-        triggerHeroReveals();
-      }
-    }
-
+    let revealed = false;
     function triggerHeroReveals() {
+      if (revealed) return;
+      revealed = true;
+      startScroll();
       setTimeout(() => document.getElementById('site-header')?.classList.add('revealed'), 150);
       setTimeout(() => document.getElementById('hero-eyebrow')?.classList.add('revealed'), 200);
       setTimeout(() => {
@@ -3472,6 +3481,15 @@
       setTimeout(() => document.getElementById('rating-row')?.classList.add('revealed'), 650);
       setTimeout(() => document.getElementById('cta-row')?.classList.add('revealed'), 750);
       setTimeout(() => document.getElementById('hero-status-bar')?.classList.add('revealed'), 900);
+    }
+
+    window.addEventListener('page-loader-done', triggerHeroReveals);
+
+    // If loader was already dismissed or removed before this script executed:
+    if (!document.getElementById('page-loader')) {
+      triggerHeroReveals();
+    } else {
+      setTimeout(triggerHeroReveals, 1600);
     }
 
     /* ========================================================
