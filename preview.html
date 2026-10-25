@@ -549,7 +549,7 @@
       }
     }
 
-    /* Hero Section with Clean Minimalist Architectural Studio */
+    /* Hero Section with Interactive Video Background */
     #home {
       position: relative;
       isolation: isolate;
@@ -558,36 +558,78 @@
       background: #080a0f;
       color: #ffffff;
     }
-    .liquid-container {
+    .hero-video-wrap {
       position: absolute;
       inset: 0;
       z-index: 0;
       overflow: hidden;
+      background: #080a0f;
     }
-    .liquid-base-img {
+    .hero-interactive-video {
       position: absolute;
-      inset: 0;
+      right: 0;
+      top: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center;
-      pointer-events: none;
-      filter: brightness(0.6) contrast(1.1);
+      object-position: 70% 15%;
+      opacity: 0.95;
+      transition: opacity 0.5s ease;
+      pointer-events: auto;
     }
-    .liquid-canvas {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
+    @media (min-width: 1024px) {
+      .hero-interactive-video {
+        width: 58%;
+        object-position: center 15%;
+      }
     }
-    .hero-vignette {
+    .hero-video-vignette {
       position: absolute;
       inset: 0;
       z-index: 1;
       pointer-events: none;
-      background: radial-gradient(circle at 65% 35%, rgba(8, 10, 15, 0.35) 0%, rgba(8, 10, 15, 0.75) 55%, rgba(8, 10, 15, 0.97) 100%),
-                  linear-gradient(to bottom, rgba(8, 10, 15, 0.5) 0%, transparent 40%, rgba(8, 10, 15, 0.95) 100%);
+      background: 
+        linear-gradient(to right, #080a0f 0%, rgba(8, 10, 15, 0.98) 35%, rgba(8, 10, 15, 0.65) 60%, rgba(8, 10, 15, 0.15) 100%),
+        linear-gradient(to bottom, rgba(8, 10, 15, 0.6) 0%, transparent 20%, transparent 70%, #080a0f 100%);
+    }
+    @media (max-width: 1023px) {
+      .hero-video-vignette {
+        background: linear-gradient(to bottom, rgba(8, 10, 15, 0.85) 0%, rgba(8, 10, 15, 0.65) 40%, rgba(8, 10, 15, 0.95) 100%);
+      }
+    }
+    .hero-interaction-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: var(--radius-pill);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: #38bdf8;
+      font-size: 0.75rem;
+      font-family: 'JetBrains Mono', monospace;
+      backdrop-filter: blur(8px);
+      width: fit-content;
+      transition: all 0.3s ease;
+      user-select: none;
+    }
+    .hero-interaction-chip.active {
+      background: rgba(56, 189, 248, 0.2);
+      border-color: #38bdf8;
+      color: #ffffff;
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+    }
+    .pulse-dot {
+      width: 0.4rem;
+      height: 0.4rem;
+      border-radius: 50%;
+      background: #38bdf8;
+      box-shadow: 0 0 6px #38bdf8;
+      animation: pulseGlow 1.8s infinite;
+    }
+    @keyframes pulseGlow {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.4); opacity: 0.4; }
     }
     .hero-watermark {
       pointer-events: none;
@@ -2185,24 +2227,23 @@
   <!-- ======================================================== -->
   <main id="main">
 
-    <!-- 1) HERO SECTION (#home) with CLEAN ARCHITECTURAL STUDIO -->
+    <!-- 1) HERO SECTION (#home) with INTERACTIVE PORTRAIT VIDEO -->
     <section id="home" aria-label="Engineering Profile Introduction">
-      <!-- Full-bleed Liquid Reveal Background -->
-      <div class="liquid-container" id="liquid-wrap">
-        <!-- Always-visible base image: Clean architectural studio -->
-        <img 
-          src="assets/studio_hero_bg.jpg" 
-          alt="Minimalist architectural dark studio background with smooth concrete walls and atmospheric lighting" 
-          class="liquid-base-img" 
-          fetchpriority="high"
-          decoding="async"
-        />
-        <!-- Cursor brush canvas: Paints ambient cyan studio reveal on pointer trail -->
-        <canvas class="liquid-canvas" id="liquid-canvas" aria-hidden="true"></canvas>
+      <!-- Interactive Hero Video Background -->
+      <div class="hero-video-wrap" id="hero-video-wrap">
+        <video 
+          id="hero-video" 
+          src="assets/hero_video.mp4" 
+          muted 
+          playsinline 
+          autoplay
+          preload="auto"
+          class="hero-interactive-video"
+          aria-label="Mohamed Jama interactive portrait video"
+        ></video>
+        <!-- Legibility Gradient Vignette -->
+        <div class="hero-video-vignette" aria-hidden="true"></div>
       </div>
-
-      <!-- Legibility vignette -->
-      <div class="hero-vignette" aria-hidden="true"></div>
 
       <!-- Brand Watermark -->
       <div class="hero-watermark" id="hero-watermark" aria-hidden="true">MOHAMED</div>
@@ -2211,10 +2252,16 @@
       <div class="shell hero-content">
         <!-- Left Column (span 7) -->
         <div class="hero-left">
-          <!-- Eyebrow -->
-          <div class="eyebrow tone-light hero-eyebrow" id="hero-eyebrow">
-            <span class="eyebrow-dot"></span>
-            <span>// FULL-STACK SOFTWARE ENGINEER</span>
+          <!-- Eyebrow & Interactive Chip -->
+          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem;">
+            <div class="eyebrow tone-light hero-eyebrow" id="hero-eyebrow">
+              <span class="eyebrow-dot"></span>
+              <span>// FULL-STACK SOFTWARE ENGINEER</span>
+            </div>
+            <div class="hero-interaction-chip" id="video-status-chip">
+              <span class="pulse-dot"></span>
+              <span id="video-status-text">Hover to wave &amp; smile 👋</span>
+            </div>
           </div>
 
           <!-- Display Headline (Line reveal) -->
@@ -3148,171 +3195,86 @@
     setInterval(updateLiveClock, 1000);
 
     /* ========================================================
-       4. Liquid Cursor Reveal (Hero Canvas with Code Human)
+       4. Interactive Hero Video (Normal Pose -> Hover to Wave & Smile)
        ======================================================== */
-    const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const liquidWrap = document.getElementById('liquid-wrap');
-    const canvas = document.getElementById('liquid-canvas');
+    const heroVideo = document.getElementById('hero-video');
+    const heroSection = document.getElementById('home');
+    const statusChip = document.getElementById('video-status-chip');
+    const statusText = document.getElementById('video-status-text');
 
-    if (!isReducedMotion && canvas && liquidWrap) {
-      const ctx = canvas.getContext('2d');
-      const brushRadius = 143;
-      const decay = 0.016;
-      let dpr = Math.min(window.devicePixelRatio || 1, 2);
+    if (heroVideo) {
+      let isHovered = false;
+      heroVideo.muted = true;
+      heroVideo.playsInline = true;
 
-      // Load reveal image: Ambient cyan architectural lighting
-      const revealImg = new Image();
-      revealImg.src = 'assets/studio_hero_reveal.jpg';
+      // Normal standing loop boundaries (seconds 0.0s to 0.75s)
+      const NORMAL_START = 0.05;
+      const NORMAL_END = 0.75;
+      
+      // Wave & Smile loop boundaries (seconds 1.2s to 3.0s)
+      const WAVE_START = 0.9;
+      const WAVE_LOOP_START = 1.35;
+      const WAVE_END = 3.1;
 
-      let coverCanvas = document.createElement('canvas');
-      let coverCtx = coverCanvas.getContext('2d');
+      // Ensure autoplay starts in muted mode
+      heroVideo.currentTime = NORMAL_START;
+      heroVideo.play().catch(() => {});
 
-      let brushCanvas = document.createElement('canvas');
-      let brushCtx = brushCanvas.getContext('2d');
-
-      let width = 0, height = 0;
-      let radius = brushRadius * dpr;
-      let diam = Math.ceil(radius * 2);
-
-      function setupBrush() {
-        brushCanvas.width = diam;
-        brushCanvas.height = diam;
-        const grad = brushCtx.createRadialGradient(radius, radius, 0, radius, radius, radius);
-        grad.addColorStop(0, 'rgba(255,255,255,1)');
-        grad.addColorStop(0.55, 'rgba(255,255,255,0.85)');
-        grad.addColorStop(1, 'rgba(255,255,255,0)');
-        brushCtx.fillStyle = grad;
-        brushCtx.fillRect(0, 0, diam, diam);
-      }
-
-      function updateCover() {
-        if (!width || !height || !revealImg.naturalWidth) return;
-        coverCanvas.width = width;
-        coverCanvas.height = height;
-
-        const imgRatio = revealImg.naturalWidth / revealImg.naturalHeight;
-        const canvasRatio = width / height;
-        let dw, dh, dx, dy;
-        if (canvasRatio > imgRatio) {
-          dw = width;
-          dh = width / imgRatio;
-          dx = 0;
-          dy = (height - dh) / 2;
-        } else {
-          dh = height;
-          dw = height * imgRatio;
-          dx = (width - dw) / 2;
-          dy = 0;
-        }
-        coverCtx.clearRect(0, 0, width, height);
-        coverCtx.drawImage(revealImg, dx, dy, dw, dh);
-      }
-
-      function resize() {
-        const rect = liquidWrap.getBoundingClientRect();
-        dpr = Math.min(window.devicePixelRatio || 1, 2);
-        width = Math.round(rect.width * dpr);
-        height = Math.round(rect.height * dpr);
-        canvas.width = width;
-        canvas.height = height;
-        radius = brushRadius * dpr;
-        diam = Math.ceil(radius * 2);
-        setupBrush();
-        updateCover();
-      }
-
-      revealImg.onload = () => updateCover();
-
-      const resizeObserver = new ResizeObserver(() => resize());
-      resizeObserver.observe(liquidWrap);
-      resize();
-
-      let lastPoint = null;
-      let points = [];
-      let idle = 0;
-
-      window.addEventListener('pointermove', (e) => {
-        const rect = liquidWrap.getBoundingClientRect();
-        const clientX = e.clientX - rect.left;
-        const clientY = e.clientY - rect.top;
-
-        const x = clientX * dpr;
-        const y = clientY * dpr;
-
-        if (x < -radius || x > width + radius || y < -radius || y > height + radius) {
-          lastPoint = null;
-          return;
-        }
-
-        if (!lastPoint) {
-          lastPoint = { x, y };
-          points.push({ x, y });
-        } else {
-          const dx = x - lastPoint.x;
-          const dy = y - lastPoint.y;
-          const dist = Math.hypot(dx, dy);
-          const step = Math.max(radius * 0.3, 1);
-          const n = Math.min(Math.ceil(dist / step), 60);
-
-          for (let i = 1; i <= n; i++) {
-            points.push({
-              x: lastPoint.x + (dx * i) / n,
-              y: lastPoint.y + (dy * i) / n
-            });
+      function onTimeUpdate() {
+        if (!isHovered) {
+          // Normal mode: Loop the calm resting/standing pose
+          if (heroVideo.currentTime >= NORMAL_END || heroVideo.currentTime < NORMAL_START) {
+            heroVideo.currentTime = NORMAL_START;
+            heroVideo.play().catch(() => {});
           }
-          lastPoint = { x, y };
-        }
-      });
-
-      function stamp(x, y) {
-        if (!coverCanvas.width) return;
-        const c = radius;
-        brushCtx.globalCompositeOperation = 'source-over';
-        brushCtx.clearRect(0, 0, diam, diam);
-
-        const grad = brushCtx.createRadialGradient(c, c, 0, c, c, c);
-        grad.addColorStop(0, 'rgba(255,255,255,1)');
-        grad.addColorStop(0.55, 'rgba(255,255,255,0.85)');
-        grad.addColorStop(1, 'rgba(255,255,255,0)');
-        brushCtx.fillStyle = grad;
-        brushCtx.fillRect(0, 0, diam, diam);
-
-        brushCtx.globalCompositeOperation = 'source-in';
-        brushCtx.drawImage(coverCanvas, x - c, y - c, diam, diam, 0, 0, diam, diam);
-
-        ctx.globalCompositeOperation = 'source-over';
-        ctx.drawImage(brushCanvas, x - c, y - c);
-      }
-
-      function loop() {
-        const drawing = points.length > 0;
-        if (drawing) {
-          idle = 0;
         } else {
-          idle++;
-        }
-
-        if (idle <= 120) {
-          const fade = drawing ? decay : Math.min(decay + idle * 0.004, 0.5);
-          ctx.globalCompositeOperation = 'destination-out';
-          ctx.fillStyle = `rgba(0, 0, 0, ${fade})`;
-          ctx.fillRect(0, 0, width, height);
-
-          if (drawing) {
-            for (let i = 0; i < points.length; i++) {
-              stamp(points[i].x, points[i].y);
-            }
-            points = [];
-          }
-
-          if (idle === 120) {
-            ctx.clearRect(0, 0, width, height);
+          // Hovered mode: Play through wave and smile, then loop smoothly
+          if (heroVideo.currentTime >= WAVE_END) {
+            heroVideo.currentTime = WAVE_LOOP_START;
+            heroVideo.play().catch(() => {});
           }
         }
-
-        requestAnimationFrame(loop);
       }
-      requestAnimationFrame(loop);
+
+      heroVideo.addEventListener('timeupdate', onTimeUpdate);
+
+      function triggerWave() {
+        if (isHovered) return;
+        isHovered = true;
+        
+        if (statusChip) statusChip.classList.add('active');
+        if (statusText) statusText.innerHTML = 'Smiling &amp; Waving! 👋✨';
+
+        // Transition from standing pose into wave
+        if (heroVideo.currentTime < WAVE_START || heroVideo.currentTime > WAVE_END) {
+          heroVideo.currentTime = WAVE_START;
+        }
+        heroVideo.play().catch(() => {});
+      }
+
+      function triggerNormal() {
+        if (!isHovered) return;
+        isHovered = false;
+
+        if (statusChip) statusChip.classList.remove('active');
+        if (statusText) statusText.innerHTML = 'Hover to wave &amp; smile 👋';
+
+        // Return gracefully to normal pose
+        heroVideo.currentTime = NORMAL_START;
+        heroVideo.play().catch(() => {});
+      }
+
+      // Pointer event listeners on hero and video
+      heroSection?.addEventListener('pointerenter', triggerWave);
+      heroSection?.addEventListener('pointerleave', triggerNormal);
+      heroVideo.addEventListener('pointerenter', triggerWave);
+      heroVideo.addEventListener('pointerleave', triggerNormal);
+
+      // Mobile touch interactions
+      heroSection?.addEventListener('touchstart', () => {
+        triggerWave();
+        setTimeout(triggerNormal, 3500);
+      }, { passive: true });
     }
 
     /* ========================================================
